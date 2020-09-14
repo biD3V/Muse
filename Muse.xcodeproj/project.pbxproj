@@ -6,14 +6,499 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AE3C6F6424EC20DE00B5A841 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = AE3C6F6124EC20B700B5A841 /* UIImage+Color.m */; };
+		AE3C6F6C24EC2D0000B5A841 /* HSWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3C6F6724EC230200B5A841 /* HSWidgets.framework */; };
+		AE3C6F6D24EC2D0000B5A841 /* HSWidgets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE3C6F6724EC230200B5A841 /* HSWidgets.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AE3C6FA124EC4BBA00B5A841 /* MuseUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE3C6F9F24EC4BBA00B5A841 /* MuseUI.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AE3C6FA224EC4CB100B5A841 /* dummy.app in Resources */ = {isa = PBXBuildFile; fileRef = AEC57C9524EC1C20000D82F2 /* dummy.app */; };
+		AE511D2E24EC51E8000FB304 /* UIImage+Color.h in Headers */ = {isa = PBXBuildFile; fileRef = AE3C6F3A24EC20B700B5A841 /* UIImage+Color.h */; };
+		AE511D3524EC52D4000FB304 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = AE511D3024EC52D3000FB304 /* Makefile */; };
+		AE511D3624EC52D4000FB304 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE511D3224EC52D3000FB304 /* Info.plist */; };
+		AE511D3924EC6EAC000FB304 /* MuseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3C6F9F24EC4BBA00B5A841 /* MuseUI.framework */; };
+		AE608BB824F0C422006360D3 /* MUSViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE3C6F6224EC20B700B5A841 /* MUSViewController.mm */; };
+		AE608BBA24F0CD7A006360D3 /* SPTPlayerTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = AE608BB924F0CD57006360D3 /* SPTPlayerTrack.h */; };
+		AE61EFC524F9820100D87832 /* MUMRecentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE61EFC324F9820100D87832 /* MUMRecentViewController.h */; };
+		AE61EFC624F9820100D87832 /* MUMRecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE61EFC424F9820100D87832 /* MUMRecentViewController.m */; };
+		AE6CA4D324F0262D0048DEB4 /* MUSCViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE511D3424EC52D3000FB304 /* MUSCViewController.mm */; };
+		AE6CA4D524F040EE0048DEB4 /* MUSCViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE511D3324EC52D3000FB304 /* MUSCViewController.h */; };
+		AE6CA51524F05EC40048DEB4 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = AE6CA51224F05EC40048DEB4 /* Makefile */; };
+		AE6CA51724F05EC40048DEB4 /* MuseSpotifyIntegration.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE6CA51424F05EC40048DEB4 /* MuseSpotifyIntegration.plist */; };
+		AE6CA51F24F06B4E0048DEB4 /* Tweak.x in Resources */ = {isa = PBXBuildFile; fileRef = AE6CA51E24F06B4E0048DEB4 /* Tweak.x */; };
+		AE7EEB2724F808A40030ECA8 /* MUSPreferencesViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE7EEB2524F808A40030ECA8 /* MUSPreferencesViewController.h */; };
+		AE7EEB2824F808A40030ECA8 /* MUSPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7EEB2624F808A40030ECA8 /* MUSPreferencesViewController.m */; };
+		AE7EEB2A24F809070030ECA8 /* Root.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE7EEB2924F809070030ECA8 /* Root.plist */; };
+		AE7EEB3124F835340030ECA8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = AE7EEB2C24F835330030ECA8 /* Makefile */; };
+		AE7EEB3224F835340030ECA8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE7EEB2E24F835330030ECA8 /* Info.plist */; };
+		AE7EEB3724F836800030ECA8 /* MUMViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE7EEB3024F835330030ECA8 /* MUMViewController.h */; };
+		AE7EEB3824F836830030ECA8 /* MUMViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE7EEB2F24F835330030ECA8 /* MUMViewController.mm */; };
+		AEA1F7B924F6A5F8007A8FFA /* MUSRecentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AEA1F7B724F6A5F8007A8FFA /* MUSRecentViewController.h */; };
+		AEA1F7BA24F6A5F8007A8FFA /* MUSRecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA1F7B824F6A5F8007A8FFA /* MUSRecentViewController.m */; };
+		AEC363F324F55CED00D7D270 /* Tweak.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6CA51324F05EC40048DEB4 /* Tweak.m */; };
+		AEC363F424F55CFD00D7D270 /* Tweak.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6CA51824F05EEE0048DEB4 /* Tweak.h */; };
+		AEC57C9A24EC1C20000D82F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC57C9924EC1C20000D82F2 /* AppDelegate.m */; };
+		AEC57C9D24EC1C20000D82F2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC57C9C24EC1C20000D82F2 /* SceneDelegate.m */; };
+		AEC57CA024EC1C20000D82F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC57C9F24EC1C20000D82F2 /* ViewController.m */; };
+		AEC57CA324EC1C20000D82F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC57CA124EC1C20000D82F2 /* Main.storyboard */; };
+		AEC57CA524EC1C23000D82F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC57CA424EC1C23000D82F2 /* Assets.xcassets */; };
+		AEC57CA824EC1C23000D82F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC57CA624EC1C23000D82F2 /* LaunchScreen.storyboard */; };
+		AEC57CAB24EC1C23000D82F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC57CAA24EC1C23000D82F2 /* main.m */; };
+		AEFFF5A124ECBB0400DCB0D3 /* MUSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE3C6F3E24EC20B700B5A841 /* MUSViewController.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AE3C6F6E24EC2D0000B5A841 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AE3C6FA124EC4BBA00B5A841 /* MuseUI.framework in Embed Frameworks */,
+				AE3C6F6D24EC2D0000B5A841 /* HSWidgets.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AE3C6F0D24EC20B600B5A841 /* fakeroot */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fakeroot; sourceTree = "<group>"; };
+		AE3C6F1024EC20B600B5A841 /* .stamp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .stamp; sourceTree = "<group>"; };
+		AE3C6F1124EC20B600B5A841 /* MuseSpotify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MuseSpotify.bundle; sourceTree = "<group>"; };
+		AE3C6F1324EC20B600B5A841 /* MUSViewController.mm.1daac834.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = MUSViewController.mm.1daac834.o; sourceTree = "<group>"; };
+		AE3C6F1424EC20B600B5A841 /* UIImage+Color.m.1daac834.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "UIImage+Color.m.1daac834.o"; sourceTree = "<group>"; };
+		AE3C6F1524EC20B600B5A841 /* MUSLabelView.m.1daac834.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = MUSLabelView.m.1daac834.o; sourceTree = "<group>"; };
+		AE3C6F1624EC20B600B5A841 /* SpotifyInfoGrabber.dylib.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = SpotifyInfoGrabber.dylib.dSYM; sourceTree = "<group>"; };
+		AE3C6F1724EC20B600B5A841 /* Tweak.x.06c50f44.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Tweak.x.06c50f44.o; sourceTree = "<group>"; };
+		AE3C6F1824EC20B600B5A841 /* Tweak.x.06c50f44.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.x.06c50f44.Td; sourceTree = "<group>"; };
+		AE3C6F1924EC20B600B5A841 /* Tweak.x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweak.x.m; sourceTree = "<group>"; };
+		AE3C6F1A24EC20B600B5A841 /* SpotifyApi.m.1daac834.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpotifyApi.m.1daac834.Td; sourceTree = "<group>"; };
+		AE3C6F1B24EC20B600B5A841 /* MuseSpotify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MuseSpotify.bundle; sourceTree = "<group>"; };
+		AE3C6F1C24EC20B600B5A841 /* MUSLabelView.m.1daac834.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MUSLabelView.m.1daac834.Td; sourceTree = "<group>"; };
+		AE3C6F1D24EC20B600B5A841 /* UIImage+Color.m.1daac834.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIImage+Color.m.1daac834.Td"; sourceTree = "<group>"; };
+		AE3C6F1E24EC20B600B5A841 /* MUSViewController.mm.1daac834.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MUSViewController.mm.1daac834.Td; sourceTree = "<group>"; };
+		AE3C6F1F24EC20B600B5A841 /* SpotifyInfoGrabber.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = SpotifyInfoGrabber.dylib; sourceTree = "<group>"; };
+		AE3C6F2024EC20B600B5A841 /* SpotifyApi.m.1daac834.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = SpotifyApi.m.1daac834.o; sourceTree = "<group>"; };
+		AE3C6F2124EC20B600B5A841 /* SpotifyInfoGrabber.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = SpotifyInfoGrabber.dylib; sourceTree = "<group>"; };
+		AE3C6F2324EC20B600B5A841 /* MUSViewController.mm.58ac059a.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MUSViewController.mm.58ac059a.Td; sourceTree = "<group>"; };
+		AE3C6F2424EC20B600B5A841 /* SpotifyInfoGrabber.dylib.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = SpotifyInfoGrabber.dylib.dSYM; sourceTree = "<group>"; };
+		AE3C6F2524EC20B600B5A841 /* Tweak.x.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweak.x.m; sourceTree = "<group>"; };
+		AE3C6F2624EC20B600B5A841 /* MUSLabelView.m.58ac059a.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MUSLabelView.m.58ac059a.Td; sourceTree = "<group>"; };
+		AE3C6F2724EC20B600B5A841 /* MuseSpotify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MuseSpotify.bundle; sourceTree = "<group>"; };
+		AE3C6F2824EC20B600B5A841 /* UIImage+Color.m.58ac059a.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIImage+Color.m.58ac059a.Td"; sourceTree = "<group>"; };
+		AE3C6F2924EC20B600B5A841 /* Tweak.x.8a2f0888.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.x.8a2f0888.Td; sourceTree = "<group>"; };
+		AE3C6F2A24EC20B600B5A841 /* SpotifyApi.m.58ac059a.Td */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpotifyApi.m.58ac059a.Td; sourceTree = "<group>"; };
+		AE3C6F2B24EC20B600B5A841 /* MUSLabelView.m.58ac059a.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = MUSLabelView.m.58ac059a.o; sourceTree = "<group>"; };
+		AE3C6F2C24EC20B600B5A841 /* SpotifyInfoGrabber.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = SpotifyInfoGrabber.dylib; sourceTree = "<group>"; };
+		AE3C6F2D24EC20B600B5A841 /* MUSViewController.mm.58ac059a.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = MUSViewController.mm.58ac059a.o; sourceTree = "<group>"; };
+		AE3C6F2E24EC20B600B5A841 /* UIImage+Color.m.58ac059a.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "UIImage+Color.m.58ac059a.o"; sourceTree = "<group>"; };
+		AE3C6F2F24EC20B600B5A841 /* Tweak.x.8a2f0888.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Tweak.x.8a2f0888.o; sourceTree = "<group>"; };
+		AE3C6F3224EC20B600B5A841 /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		AE3C6F3524EC20B600B5A841 /* MuseSpotify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MuseSpotify.bundle; sourceTree = "<group>"; };
+		AE3C6F3724EC20B600B5A841 /* com.bid3v.musespotify-1.0 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "com.bid3v.musespotify-1.0"; sourceTree = "<group>"; };
+		AE3C6F3824EC20B600B5A841 /* last_package */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = last_package; sourceTree = "<group>"; };
+		AE3C6F3924EC20B600B5A841 /* build_session */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build_session; sourceTree = "<group>"; };
+		AE3C6F3A24EC20B700B5A841 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		AE3C6F3B24EC20B700B5A841 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		AE3C6F3D24EC20B700B5A841 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE3C6F3E24EC20B700B5A841 /* MUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUSViewController.h; sourceTree = "<group>"; };
+		AE3C6F4024EC20B700B5A841 /* com.bid3v.musespotify_1.0-30+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-30+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4124EC20B700B5A841 /* com.bid3v.musespotify_1.0-33+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-33+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4224EC20B700B5A841 /* com.bid3v.musespotify_1.0-32+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-32+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4324EC20B700B5A841 /* com.bid3v.musespotify_1.0-31+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-31+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4424EC20B700B5A841 /* com.bid3v.musespotify_1.0-24+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-24+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4524EC20B700B5A841 /* com.bid3v.musespotify_1.0-7+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-7+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4624EC20B700B5A841 /* com.bid3v.musespotify_1.0-15+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-15+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4724EC20B700B5A841 /* com.bid3v.musespotify_1.0-23+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-23+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4824EC20B700B5A841 /* com.bid3v.musespotify_1.0-29+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-29+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4924EC20B700B5A841 /* com.bid3v.musespotify_1.0-18+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-18+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4A24EC20B700B5A841 /* com.bid3v.musespotify_1.0-12+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-12+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4B24EC20B700B5A841 /* com.bid3v.musespotify_1.0-3+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-3+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4C24EC20B700B5A841 /* com.bid3v.musespotify_1.0-20+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-20+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4D24EC20B700B5A841 /* com.bid3v.musespotify_1.0-9+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-9+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4E24EC20B700B5A841 /* com.bid3v.musespotify_1.0-11+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-11+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F4F24EC20B700B5A841 /* com.bid3v.musespotify_1.0-4+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-4+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5024EC20B700B5A841 /* com.bid3v.musespotify_1.0-27+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-27+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5124EC20B700B5A841 /* com.bid3v.musespotify_1.0-16+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-16+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5224EC20B700B5A841 /* com.bid3v.musespotify_1.0-17+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-17+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5324EC20B700B5A841 /* com.bid3v.musespotify_1.0-26+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-26+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5424EC20B700B5A841 /* com.bid3v.musespotify_1.0-5+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-5+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5524EC20B700B5A841 /* com.bid3v.musespotify_1.0-10+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-10+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5624EC20B700B5A841 /* com.bid3v.musespotify_1.0-21+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-21+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5724EC20B700B5A841 /* com.bid3v.musespotify_1.0-8+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-8+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5824EC20B700B5A841 /* com.bid3v.musespotify_1.0-2+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-2+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5924EC20B700B5A841 /* com.bid3v.musespotify_1.0-13+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-13+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5A24EC20B700B5A841 /* com.bid3v.musespotify_1.0-19+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-19+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5B24EC20B700B5A841 /* com.bid3v.musespotify_1.0-28+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-28+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5C24EC20B700B5A841 /* com.bid3v.musespotify_1.0-1+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-1+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5D24EC20B700B5A841 /* com.bid3v.musespotify_1.0-22+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-22+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5E24EC20B700B5A841 /* com.bid3v.musespotify_1.0-14+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-14+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F5F24EC20B700B5A841 /* com.bid3v.musespotify_1.0-6+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-6+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F6024EC20B700B5A841 /* com.bid3v.musespotify_1.0-25+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.bid3v.musespotify_1.0-25+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		AE3C6F6124EC20B700B5A841 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		AE3C6F6224EC20B700B5A841 /* MUSViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MUSViewController.mm; sourceTree = "<group>"; };
+		AE3C6F6324EC20B700B5A841 /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		AE3C6F6724EC230200B5A841 /* HSWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HSWidgets.framework; path = ../../../theos/lib/HSWidgets.framework; sourceTree = "<group>"; };
+		AE3C6F9F24EC4BBA00B5A841 /* MuseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MuseUI.framework; path = ../../../theos/lib/MuseUI.framework; sourceTree = "<group>"; };
+		AE511D3024EC52D3000FB304 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		AE511D3224EC52D3000FB304 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE511D3324EC52D3000FB304 /* MUSCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUSCViewController.h; sourceTree = "<group>"; };
+		AE511D3424EC52D3000FB304 /* MUSCViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MUSCViewController.mm; sourceTree = "<group>"; };
+		AE608BB924F0CD57006360D3 /* SPTPlayerTrack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPTPlayerTrack.h; sourceTree = "<group>"; };
+		AE61EFC324F9820100D87832 /* MUMRecentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MUMRecentViewController.h; sourceTree = "<group>"; };
+		AE61EFC424F9820100D87832 /* MUMRecentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MUMRecentViewController.m; sourceTree = "<group>"; };
+		AE6CA51224F05EC40048DEB4 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		AE6CA51324F05EC40048DEB4 /* Tweak.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = Tweak.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		AE6CA51424F05EC40048DEB4 /* MuseSpotifyIntegration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = MuseSpotifyIntegration.plist; sourceTree = "<group>"; };
+		AE6CA51824F05EEE0048DEB4 /* Tweak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweak.h; sourceTree = "<group>"; };
+		AE6CA51E24F06B4E0048DEB4 /* Tweak.x */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.x; sourceTree = "<group>"; };
+		AE7EEB2524F808A40030ECA8 /* MUSPreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MUSPreferencesViewController.h; sourceTree = "<group>"; };
+		AE7EEB2624F808A40030ECA8 /* MUSPreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MUSPreferencesViewController.m; sourceTree = "<group>"; };
+		AE7EEB2924F809070030ECA8 /* Root.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Root.plist; sourceTree = "<group>"; };
+		AE7EEB2C24F835330030ECA8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		AE7EEB2E24F835330030ECA8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE7EEB2F24F835330030ECA8 /* MUMViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MUMViewController.mm; sourceTree = "<group>"; };
+		AE7EEB3024F835330030ECA8 /* MUMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUMViewController.h; sourceTree = "<group>"; };
+		AEA1F7B724F6A5F8007A8FFA /* MUSRecentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MUSRecentViewController.h; sourceTree = "<group>"; };
+		AEA1F7B824F6A5F8007A8FFA /* MUSRecentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MUSRecentViewController.m; sourceTree = "<group>"; };
+		AEC57C7624EC1886000D82F2 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		AEC57C7724EC1886000D82F2 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		AEC57C9524EC1C20000D82F2 /* dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEC57C9824EC1C20000D82F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AEC57C9924EC1C20000D82F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AEC57C9B24EC1C20000D82F2 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		AEC57C9C24EC1C20000D82F2 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		AEC57C9E24EC1C20000D82F2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AEC57C9F24EC1C20000D82F2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AEC57CA224EC1C20000D82F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AEC57CA424EC1C23000D82F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AEC57CA724EC1C23000D82F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AEC57CA924EC1C23000D82F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEC57CAA24EC1C23000D82F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AEFFF5A424ECCDAE00DCB0D3 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyiOS.framework; path = ../../../theos/lib/SpotifyiOS.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AEC57C9224EC1C20000D82F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE511D3924EC6EAC000FB304 /* MuseUI.framework in Frameworks */,
+				AE3C6F6C24EC2D0000B5A841 /* HSWidgets.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
+		AE3C6F0B24EC20B600B5A841 /* musespotify */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F0C24EC20B600B5A841 /* .theos */,
+				AE3C6F3A24EC20B700B5A841 /* UIImage+Color.h */,
+				AE3C6F3B24EC20B700B5A841 /* Makefile */,
+				AE3C6F3C24EC20B700B5A841 /* Resources */,
+				AE3C6F3E24EC20B700B5A841 /* MUSViewController.h */,
+				AE3C6F3F24EC20B700B5A841 /* packages */,
+				AE3C6F6124EC20B700B5A841 /* UIImage+Color.m */,
+				AE7EEB2524F808A40030ECA8 /* MUSPreferencesViewController.h */,
+				AE7EEB2624F808A40030ECA8 /* MUSPreferencesViewController.m */,
+				AE608BB924F0CD57006360D3 /* SPTPlayerTrack.h */,
+				AEA1F7B724F6A5F8007A8FFA /* MUSRecentViewController.h */,
+				AEA1F7B824F6A5F8007A8FFA /* MUSRecentViewController.m */,
+				AE3C6F6224EC20B700B5A841 /* MUSViewController.mm */,
+				AE3C6F6324EC20B700B5A841 /* control */,
+			);
+			path = musespotify;
+			sourceTree = "<group>";
+		};
+		AE3C6F0C24EC20B600B5A841 /* .theos */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F0D24EC20B600B5A841 /* fakeroot */,
+				AE3C6F0E24EC20B600B5A841 /* obj */,
+				AE3C6F3024EC20B600B5A841 /* _ */,
+				AE3C6F3624EC20B600B5A841 /* packages */,
+				AE3C6F3824EC20B600B5A841 /* last_package */,
+				AE3C6F3924EC20B600B5A841 /* build_session */,
+			);
+			path = .theos;
+			sourceTree = "<group>";
+		};
+		AE3C6F0E24EC20B600B5A841 /* obj */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F0F24EC20B600B5A841 /* debug */,
+			);
+			path = obj;
+			sourceTree = "<group>";
+		};
+		AE3C6F0F24EC20B600B5A841 /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F1024EC20B600B5A841 /* .stamp */,
+				AE3C6F1124EC20B600B5A841 /* MuseSpotify.bundle */,
+				AE3C6F1224EC20B600B5A841 /* arm64e */,
+				AE3C6F2124EC20B600B5A841 /* SpotifyInfoGrabber.dylib */,
+				AE3C6F2224EC20B600B5A841 /* arm64 */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
+		AE3C6F1224EC20B600B5A841 /* arm64e */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F1324EC20B600B5A841 /* MUSViewController.mm.1daac834.o */,
+				AE3C6F1424EC20B600B5A841 /* UIImage+Color.m.1daac834.o */,
+				AE3C6F1524EC20B600B5A841 /* MUSLabelView.m.1daac834.o */,
+				AE3C6F1624EC20B600B5A841 /* SpotifyInfoGrabber.dylib.dSYM */,
+				AE3C6F1724EC20B600B5A841 /* Tweak.x.06c50f44.o */,
+				AE3C6F1824EC20B600B5A841 /* Tweak.x.06c50f44.Td */,
+				AE3C6F1924EC20B600B5A841 /* Tweak.x.m */,
+				AE3C6F1A24EC20B600B5A841 /* SpotifyApi.m.1daac834.Td */,
+				AE3C6F1B24EC20B600B5A841 /* MuseSpotify.bundle */,
+				AE3C6F1C24EC20B600B5A841 /* MUSLabelView.m.1daac834.Td */,
+				AE3C6F1D24EC20B600B5A841 /* UIImage+Color.m.1daac834.Td */,
+				AE3C6F1E24EC20B600B5A841 /* MUSViewController.mm.1daac834.Td */,
+				AE3C6F1F24EC20B600B5A841 /* SpotifyInfoGrabber.dylib */,
+				AE3C6F2024EC20B600B5A841 /* SpotifyApi.m.1daac834.o */,
+			);
+			path = arm64e;
+			sourceTree = "<group>";
+		};
+		AE3C6F2224EC20B600B5A841 /* arm64 */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F2324EC20B600B5A841 /* MUSViewController.mm.58ac059a.Td */,
+				AE3C6F2424EC20B600B5A841 /* SpotifyInfoGrabber.dylib.dSYM */,
+				AE3C6F2524EC20B600B5A841 /* Tweak.x.m */,
+				AE3C6F2624EC20B600B5A841 /* MUSLabelView.m.58ac059a.Td */,
+				AE3C6F2724EC20B600B5A841 /* MuseSpotify.bundle */,
+				AE3C6F2824EC20B600B5A841 /* UIImage+Color.m.58ac059a.Td */,
+				AE3C6F2924EC20B600B5A841 /* Tweak.x.8a2f0888.Td */,
+				AE3C6F2A24EC20B600B5A841 /* SpotifyApi.m.58ac059a.Td */,
+				AE3C6F2B24EC20B600B5A841 /* MUSLabelView.m.58ac059a.o */,
+				AE3C6F2C24EC20B600B5A841 /* SpotifyInfoGrabber.dylib */,
+				AE3C6F2D24EC20B600B5A841 /* MUSViewController.mm.58ac059a.o */,
+				AE3C6F2E24EC20B600B5A841 /* UIImage+Color.m.58ac059a.o */,
+				AE3C6F2F24EC20B600B5A841 /* Tweak.x.8a2f0888.o */,
+			);
+			path = arm64;
+			sourceTree = "<group>";
+		};
+		AE3C6F3024EC20B600B5A841 /* _ */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F3124EC20B600B5A841 /* DEBIAN */,
+				AE3C6F3324EC20B600B5A841 /* Library */,
+			);
+			path = _;
+			sourceTree = "<group>";
+		};
+		AE3C6F3124EC20B600B5A841 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F3224EC20B600B5A841 /* control */,
+			);
+			path = DEBIAN;
+			sourceTree = "<group>";
+		};
+		AE3C6F3324EC20B600B5A841 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F3424EC20B600B5A841 /* HSWidgets */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		AE3C6F3424EC20B600B5A841 /* HSWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F3524EC20B600B5A841 /* MuseSpotify.bundle */,
+			);
+			path = HSWidgets;
+			sourceTree = "<group>";
+		};
+		AE3C6F3624EC20B600B5A841 /* packages */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F3724EC20B600B5A841 /* com.bid3v.musespotify-1.0 */,
+			);
+			path = packages;
+			sourceTree = "<group>";
+		};
+		AE3C6F3C24EC20B700B5A841 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F3D24EC20B700B5A841 /* Info.plist */,
+				AE7EEB2924F809070030ECA8 /* Root.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AE3C6F3F24EC20B700B5A841 /* packages */ = {
+			isa = PBXGroup;
+			children = (
+				AE3C6F4024EC20B700B5A841 /* com.bid3v.musespotify_1.0-30+debug_iphoneos-arm.deb */,
+				AE3C6F4124EC20B700B5A841 /* com.bid3v.musespotify_1.0-33+debug_iphoneos-arm.deb */,
+				AE3C6F4224EC20B700B5A841 /* com.bid3v.musespotify_1.0-32+debug_iphoneos-arm.deb */,
+				AE3C6F4324EC20B700B5A841 /* com.bid3v.musespotify_1.0-31+debug_iphoneos-arm.deb */,
+				AE3C6F4424EC20B700B5A841 /* com.bid3v.musespotify_1.0-24+debug_iphoneos-arm.deb */,
+				AE3C6F4524EC20B700B5A841 /* com.bid3v.musespotify_1.0-7+debug_iphoneos-arm.deb */,
+				AE3C6F4624EC20B700B5A841 /* com.bid3v.musespotify_1.0-15+debug_iphoneos-arm.deb */,
+				AE3C6F4724EC20B700B5A841 /* com.bid3v.musespotify_1.0-23+debug_iphoneos-arm.deb */,
+				AE3C6F4824EC20B700B5A841 /* com.bid3v.musespotify_1.0-29+debug_iphoneos-arm.deb */,
+				AE3C6F4924EC20B700B5A841 /* com.bid3v.musespotify_1.0-18+debug_iphoneos-arm.deb */,
+				AE3C6F4A24EC20B700B5A841 /* com.bid3v.musespotify_1.0-12+debug_iphoneos-arm.deb */,
+				AE3C6F4B24EC20B700B5A841 /* com.bid3v.musespotify_1.0-3+debug_iphoneos-arm.deb */,
+				AE3C6F4C24EC20B700B5A841 /* com.bid3v.musespotify_1.0-20+debug_iphoneos-arm.deb */,
+				AE3C6F4D24EC20B700B5A841 /* com.bid3v.musespotify_1.0-9+debug_iphoneos-arm.deb */,
+				AE3C6F4E24EC20B700B5A841 /* com.bid3v.musespotify_1.0-11+debug_iphoneos-arm.deb */,
+				AE3C6F4F24EC20B700B5A841 /* com.bid3v.musespotify_1.0-4+debug_iphoneos-arm.deb */,
+				AE3C6F5024EC20B700B5A841 /* com.bid3v.musespotify_1.0-27+debug_iphoneos-arm.deb */,
+				AE3C6F5124EC20B700B5A841 /* com.bid3v.musespotify_1.0-16+debug_iphoneos-arm.deb */,
+				AE3C6F5224EC20B700B5A841 /* com.bid3v.musespotify_1.0-17+debug_iphoneos-arm.deb */,
+				AE3C6F5324EC20B700B5A841 /* com.bid3v.musespotify_1.0-26+debug_iphoneos-arm.deb */,
+				AE3C6F5424EC20B700B5A841 /* com.bid3v.musespotify_1.0-5+debug_iphoneos-arm.deb */,
+				AE3C6F5524EC20B700B5A841 /* com.bid3v.musespotify_1.0-10+debug_iphoneos-arm.deb */,
+				AE3C6F5624EC20B700B5A841 /* com.bid3v.musespotify_1.0-21+debug_iphoneos-arm.deb */,
+				AE3C6F5724EC20B700B5A841 /* com.bid3v.musespotify_1.0-8+debug_iphoneos-arm.deb */,
+				AE3C6F5824EC20B700B5A841 /* com.bid3v.musespotify_1.0-2+debug_iphoneos-arm.deb */,
+				AE3C6F5924EC20B700B5A841 /* com.bid3v.musespotify_1.0-13+debug_iphoneos-arm.deb */,
+				AE3C6F5A24EC20B700B5A841 /* com.bid3v.musespotify_1.0-19+debug_iphoneos-arm.deb */,
+				AE3C6F5B24EC20B700B5A841 /* com.bid3v.musespotify_1.0-28+debug_iphoneos-arm.deb */,
+				AE3C6F5C24EC20B700B5A841 /* com.bid3v.musespotify_1.0-1+debug_iphoneos-arm.deb */,
+				AE3C6F5D24EC20B700B5A841 /* com.bid3v.musespotify_1.0-22+debug_iphoneos-arm.deb */,
+				AE3C6F5E24EC20B700B5A841 /* com.bid3v.musespotify_1.0-14+debug_iphoneos-arm.deb */,
+				AE3C6F5F24EC20B700B5A841 /* com.bid3v.musespotify_1.0-6+debug_iphoneos-arm.deb */,
+				AE3C6F6024EC20B700B5A841 /* com.bid3v.musespotify_1.0-25+debug_iphoneos-arm.deb */,
+			);
+			path = packages;
+			sourceTree = "<group>";
+		};
+		AE3C6F6624EC230100B5A841 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEFFF5A424ECCDAE00DCB0D3 /* SpotifyiOS.framework */,
+				AE3C6F9F24EC4BBA00B5A841 /* MuseUI.framework */,
+				AE3C6F6724EC230200B5A841 /* HSWidgets.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE511D2F24EC52D3000FB304 /* musesoundcloud */ = {
+			isa = PBXGroup;
+			children = (
+				AE511D3024EC52D3000FB304 /* Makefile */,
+				AE511D3124EC52D3000FB304 /* Resources */,
+				AE511D3324EC52D3000FB304 /* MUSCViewController.h */,
+				AE511D3424EC52D3000FB304 /* MUSCViewController.mm */,
+			);
+			path = musesoundcloud;
+			sourceTree = "<group>";
+		};
+		AE511D3124EC52D3000FB304 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AE511D3224EC52D3000FB304 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AE6CA51124F05EC40048DEB4 /* musespotifyintegration */ = {
+			isa = PBXGroup;
+			children = (
+				AE6CA51E24F06B4E0048DEB4 /* Tweak.x */,
+				AE6CA51224F05EC40048DEB4 /* Makefile */,
+				AE6CA51324F05EC40048DEB4 /* Tweak.m */,
+				AE6CA51824F05EEE0048DEB4 /* Tweak.h */,
+				AE6CA51424F05EC40048DEB4 /* MuseSpotifyIntegration.plist */,
+			);
+			path = musespotifyintegration;
+			sourceTree = "<group>";
+		};
+		AE7EEB2B24F835330030ECA8 /* musemusic */ = {
+			isa = PBXGroup;
+			children = (
+				AE7EEB2C24F835330030ECA8 /* Makefile */,
+				AE7EEB2D24F835330030ECA8 /* Resources */,
+				AE7EEB3024F835330030ECA8 /* MUMViewController.h */,
+				AE7EEB2F24F835330030ECA8 /* MUMViewController.mm */,
+				AE61EFC324F9820100D87832 /* MUMRecentViewController.h */,
+				AE61EFC424F9820100D87832 /* MUMRecentViewController.m */,
+			);
+			path = musemusic;
+			sourceTree = "<group>";
+		};
+		AE7EEB2D24F835330030ECA8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AE7EEB2E24F835330030ECA8 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		AEC57C6924EC17AB000D82F2 = {
 			isa = PBXGroup;
 			children = (
+				AE7EEB2B24F835330030ECA8 /* musemusic */,
+				AE6CA51124F05EC40048DEB4 /* musespotifyintegration */,
+				AE511D2F24EC52D3000FB304 /* musesoundcloud */,
+				AE3C6F0B24EC20B600B5A841 /* musespotify */,
+				AEC57C7724EC1886000D82F2 /* control */,
+				AEC57C7624EC1886000D82F2 /* Makefile */,
+				AEC57C9724EC1C20000D82F2 /* dummy */,
+				AEC57C9624EC1C20000D82F2 /* Products */,
+				AE3C6F6624EC230100B5A841 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
+		AEC57C9624EC1C20000D82F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEC57C9524EC1C20000D82F2 /* dummy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEC57C9724EC1C20000D82F2 /* dummy */ = {
+			isa = PBXGroup;
+			children = (
+				AEC57C9824EC1C20000D82F2 /* AppDelegate.h */,
+				AEC57C9924EC1C20000D82F2 /* AppDelegate.m */,
+				AEC57C9B24EC1C20000D82F2 /* SceneDelegate.h */,
+				AEC57C9C24EC1C20000D82F2 /* SceneDelegate.m */,
+				AEC57C9E24EC1C20000D82F2 /* ViewController.h */,
+				AEC57C9F24EC1C20000D82F2 /* ViewController.m */,
+				AEC57CA124EC1C20000D82F2 /* Main.storyboard */,
+				AEC57CA424EC1C23000D82F2 /* Assets.xcassets */,
+				AEC57CA624EC1C23000D82F2 /* LaunchScreen.storyboard */,
+				AEC57CA924EC1C23000D82F2 /* Info.plist */,
+				AEC57CAA24EC1C23000D82F2 /* main.m */,
+			);
+			path = dummy;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AE3C6FA324EC4E7800B5A841 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEC363F424F55CFD00D7D270 /* Tweak.h in Headers */,
+				AE6CA4D524F040EE0048DEB4 /* MUSCViewController.h in Headers */,
+				AEA1F7B924F6A5F8007A8FFA /* MUSRecentViewController.h in Headers */,
+				AE7EEB2724F808A40030ECA8 /* MUSPreferencesViewController.h in Headers */,
+				AE61EFC524F9820100D87832 /* MUMRecentViewController.h in Headers */,
+				AE511D2E24EC51E8000FB304 /* UIImage+Color.h in Headers */,
+				AEFFF5A124ECBB0400DCB0D3 /* MUSViewController.h in Headers */,
+				AE608BBA24F0CD7A006360D3 /* SPTPlayerTrack.h in Headers */,
+				AE7EEB3724F836800030ECA8 /* MUMViewController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
 		AEC57C6E24EC17AB000D82F2 /* Muse */ = {
@@ -31,14 +516,39 @@
 		};
 /* End PBXLegacyTarget section */
 
+/* Begin PBXNativeTarget section */
+		AEC57C9424EC1C20000D82F2 /* dummy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AEC57CAC24EC1C23000D82F2 /* Build configuration list for PBXNativeTarget "dummy" */;
+			buildPhases = (
+				AE3C6FA324EC4E7800B5A841 /* Headers */,
+				AEC57C9124EC1C20000D82F2 /* Sources */,
+				AEC57C9224EC1C20000D82F2 /* Frameworks */,
+				AEC57C9324EC1C20000D82F2 /* Resources */,
+				AE3C6F6E24EC2D0000B5A841 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dummy;
+			productName = dummy;
+			productReference = AEC57C9524EC1C20000D82F2 /* dummy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
 /* Begin PBXProject section */
 		AEC57C6A24EC17AB000D82F2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = biD3V;
 				TargetAttributes = {
 					AEC57C6E24EC17AB000D82F2 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+					AEC57C9424EC1C20000D82F2 = {
 						CreatedOnToolsVersion = 11.6;
 					};
 				};
@@ -52,19 +562,84 @@
 				Base,
 			);
 			mainGroup = AEC57C6924EC17AB000D82F2;
+			productRefGroup = AEC57C9624EC1C20000D82F2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				AEC57C6E24EC17AB000D82F2 /* Muse */,
+				AEC57C9424EC1C20000D82F2 /* dummy */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AEC57C9324EC1C20000D82F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE6CA51724F05EC40048DEB4 /* MuseSpotifyIntegration.plist in Resources */,
+				AE3C6FA224EC4CB100B5A841 /* dummy.app in Resources */,
+				AE7EEB3224F835340030ECA8 /* Info.plist in Resources */,
+				AEC57CA824EC1C23000D82F2 /* LaunchScreen.storyboard in Resources */,
+				AE6CA51F24F06B4E0048DEB4 /* Tweak.x in Resources */,
+				AEC57CA524EC1C23000D82F2 /* Assets.xcassets in Resources */,
+				AE511D3624EC52D4000FB304 /* Info.plist in Resources */,
+				AE7EEB2A24F809070030ECA8 /* Root.plist in Resources */,
+				AEC57CA324EC1C20000D82F2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AEC57C9124EC1C20000D82F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE61EFC624F9820100D87832 /* MUMRecentViewController.m in Sources */,
+				AEC363F324F55CED00D7D270 /* Tweak.m in Sources */,
+				AE6CA51524F05EC40048DEB4 /* Makefile in Sources */,
+				AE7EEB3824F836830030ECA8 /* MUMViewController.mm in Sources */,
+				AEC57CA024EC1C20000D82F2 /* ViewController.m in Sources */,
+				AE7EEB2824F808A40030ECA8 /* MUSPreferencesViewController.m in Sources */,
+				AEC57C9A24EC1C20000D82F2 /* AppDelegate.m in Sources */,
+				AEA1F7BA24F6A5F8007A8FFA /* MUSRecentViewController.m in Sources */,
+				AE3C6F6424EC20DE00B5A841 /* UIImage+Color.m in Sources */,
+				AE6CA4D324F0262D0048DEB4 /* MUSCViewController.mm in Sources */,
+				AEC57CAB24EC1C23000D82F2 /* main.m in Sources */,
+				AE511D3524EC52D4000FB304 /* Makefile in Sources */,
+				AE7EEB3124F835340030ECA8 /* Makefile in Sources */,
+				AE608BB824F0C422006360D3 /* MUSViewController.mm in Sources */,
+				AEC57C9D24EC1C20000D82F2 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AEC57CA124EC1C20000D82F2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AEC57CA224EC1C20000D82F2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AEC57CA624EC1C23000D82F2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AEC57CA724EC1C23000D82F2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AEC57C6F24EC17AB000D82F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -97,6 +672,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../theos/lib";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -114,13 +690,17 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../theos/lib/**",
+					"$(SRCROOT)/../../../theos/include/**",
+				);
 			};
 			name = Debug;
 		};
 		AEC57C7024EC17AB000D82F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -153,6 +733,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../theos/lib";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -163,12 +744,17 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../theos/lib/**",
+					"$(SRCROOT)/../../../theos/include/**",
+				);
 			};
 			name = Release;
 		};
 		AEC57C7224EC17AB000D82F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ACTION = do;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUGGING_SYMBOLS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -177,17 +763,85 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				THEOS = "~/theos";
 			};
 			name = Debug;
 		};
 		AEC57C7324EC17AB000D82F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ACTION = do;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				THEOS = "~/theos";
+			};
+			name = Release;
+		};
+		AEC57CAD24EC1C23000D82F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"~/theos/include",
+					"~/theos/lib",
+					"~/theos/sdks/**",
+					"~/theos/vendor/lib",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = dummy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bide3v.dummy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = (
+					"~/theos/lib/**",
+					"~/theos/include/**",
+					"~/theos/sdks/**",
+					"~/theos/vendor/include/**",
+				);
+			};
+			name = Debug;
+		};
+		AEC57CAE24EC1C23000D82F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"~/theos/include",
+					"~/theos/lib",
+					"~/theos/sdks/**",
+					"~/theos/vendor/lib",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = dummy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bide3v.dummy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = (
+					"~/theos/lib/**",
+					"~/theos/include/**",
+					"~/theos/sdks/**",
+					"~/theos/vendor/include/**",
+				);
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -208,6 +862,15 @@
 			buildConfigurations = (
 				AEC57C7224EC17AB000D82F2 /* Debug */,
 				AEC57C7324EC17AB000D82F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AEC57CAC24EC1C23000D82F2 /* Build configuration list for PBXNativeTarget "dummy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AEC57CAD24EC1C23000D82F2 /* Debug */,
+				AEC57CAE24EC1C23000D82F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

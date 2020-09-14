@@ -1,0 +1,9 @@
+Package: com.bid3v.musespotify
+Name: MuseSpotify
+Depends: mobilesubstrate, com.dgh0st.hswidgets
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Spotify widget for Muse.
+Maintainer: biD3V
+Author: biD3V
+Section: Addons (HSWidgets)
