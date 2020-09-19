@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <MuseUI/MuseUI.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

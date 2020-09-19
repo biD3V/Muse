@@ -15,11 +15,11 @@
     
     FBApplicationInfo *appInfo = [LSApplicationProxy applicationProxyForIdentifier: @"com.spotify.client"];
     spotifyBundle = [NSBundle bundleWithURL:appInfo.bundleURL];
+    widgetBundle = [NSBundle bundleWithURL:[NSURL fileURLWithPath:@"/Library/HSWidgets/MuseSpotify.bundle"]];
 
     [self addContentView];
     [self addPlayerContainer];
     [self addPause];
-    [self addTestLabel];
     [self addIconView];
     [self addAlbumView];
     [self addLabelView];
@@ -147,10 +147,14 @@
     
     CGFloat codeWidth = (((playerContainer.frame.size.width - 16.0) * 10.0) / 8.0);
     
+    // create javascript to remove background set dynamic color
     source = [NSString stringWithFormat:@"var svg = document.getElementsByTagName('svg')[0];\n"
                         "svg.setAttribute(\"viewBox\", \"80 0 400 100\");\n"
               "svg.setAttribute(\"width\", \"%fpt\");\n"
               "svg.setAttribute(\"height\", \"%fpt\");\n"
+              "for (i = 0; i < document.getElementsByTagName('rect').length; i++) {\n"
+              "document.getElementsByTagName('rect')[i].setAttribute(\"fill\", \"currentColor\");\n"
+              "}\n"
               "var background = document.getElementsByTagName('rect')[0];\n"
               "background.setAttribute(\"fill\", \"#00000000\");", (codeWidth * 3.0), ((codeWidth * 3.0) / 4)];
     script = [[WKUserScript alloc] initWithSource:source injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:true];
@@ -165,12 +169,14 @@
     [svgView setUIDelegate:self];
     [svgView setNavigationDelegate:self];
     
+    // Hide view if not small size
     if (self.widgetFrame.size.numCols == 2) {
         [svgView setAlpha:1];
     } else {
         [svgView setAlpha:0];
     }
     
+    // Center view
     [svgView setTranslatesAutoresizingMaskIntoConstraints:false];
     
     [playerContainer addSubview:svgView];
@@ -182,11 +188,21 @@
     [svgView.centerYAnchor constraintEqualToAnchor:centeringView.centerYAnchor].active = true;
     [svgView.heightAnchor constraintEqualToConstant:(codeWidth / 4)].active = true;
     
+    // Get Song Code
     NSString *svgURLString = [NSString stringWithFormat:@"https://scannables.scdn.co/uri/plain/svg/000000/white/640/%@", trackUrlString];
-    
     NSURL *url = [NSURL URLWithString:svgURLString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [svgView loadRequest:request];
+    NSData *svgData = [NSData dataWithContentsOfURL:url];
+    // Download SVG
+    [svgData writeToFile:@"/var/mobile/Documents/SpotifySVG.html" atomically:YES];
+    // Insert SVG into Container.html to allow for dynamic coloring
+    NSString *containerHTML = [NSString stringWithContentsOfFile:[widgetBundle pathForResource:@"Container" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *svgString = [NSString stringWithContentsOfFile:@"/var/mobile/Documents/SpotifySVG.html" encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *html = [NSString stringWithFormat:containerHTML, svgString];
+    
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [svgView loadRequest:request];
+    [svgView loadHTMLString:html baseURL:[widgetBundle bundleURL]];
     
     [svgView setOpaque:false];
     [svgView.scrollView setScrollEnabled:false];

@@ -81,7 +81,7 @@ static NSString * const reuseIdentifier = @"recentMusicCoverCell";
         [songDict setObject:(NSDate *)[song valueForKey:@"dateAdded"] forKey:@"dateAdded"];
         [songDict setObject:[song valueForKey:@"lastPlayedDate"] ? (NSDate *)[song valueForKey:@"lastPlayedDate"] : (NSDate *)[song valueForKey:@"dateAdded"] forKey:@"lastPlayedDate"];
         [songDict setObject:(NSString *)[song valueForKey:@"title"] forKey:@"title"];
-        [songDict setObject:(MPMediaItemArtwork *)[song valueForKey:@"artwork"] forKey:@"artwork"];
+        [songDict setObject:(MPMediaItemArtwork *)[song valueForKey:@"artwork"] ?: [UIImage emptyImageWithSize:CGSizeMake(100, 100)] forKey:@"artwork"];
         [songArray addObject:songDict];
     }
     
@@ -96,7 +96,7 @@ static NSString * const reuseIdentifier = @"recentMusicCoverCell";
     if (sortedSongs[indexPath.item] != nil) {
         UIImageView *coverArt = [UIImageView new];
         
-        [coverArt setImage:[(MPMediaItemArtwork *)[sortedSongs[indexPath.item] valueForKey:@"artwork"] imageWithSize:CGSizeMake(100, 100)]];
+        [coverArt setImage:[[sortedSongs[indexPath.item] valueForKey:@"artwork"] isKindOfClass:[MPMediaItemArtwork class]] ? [(MPMediaItemArtwork *)[sortedSongs[indexPath.item] valueForKey:@"artwork"] imageWithSize:CGSizeMake(100, 100)] : (UIImage *)[sortedSongs[indexPath.item] valueForKey:@"artwork"]];
 
         [coverArt setTranslatesAutoresizingMaskIntoConstraints:false];
 

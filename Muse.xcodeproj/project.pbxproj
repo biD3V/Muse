@@ -144,6 +144,8 @@
 		AE511D3224EC52D3000FB304 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE511D3324EC52D3000FB304 /* MUSCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUSCViewController.h; sourceTree = "<group>"; };
 		AE511D3424EC52D3000FB304 /* MUSCViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MUSCViewController.mm; sourceTree = "<group>"; };
+		AE55967325167D3C0079C1DA /* Container.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Container.html; sourceTree = "<group>"; };
+		AE5D9F16251457A90057519E /* Dynamic.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Dynamic.css; sourceTree = "<group>"; };
 		AE608BB924F0CD57006360D3 /* SPTPlayerTrack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPTPlayerTrack.h; sourceTree = "<group>"; };
 		AE61EFC324F9820100D87832 /* MUMRecentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MUMRecentViewController.h; sourceTree = "<group>"; };
 		AE61EFC424F9820100D87832 /* MUMRecentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MUMRecentViewController.m; sourceTree = "<group>"; };
@@ -331,7 +333,9 @@
 			isa = PBXGroup;
 			children = (
 				AE3C6F3D24EC20B700B5A841 /* Info.plist */,
+				AE55967325167D3C0079C1DA /* Container.html */,
 				AE7EEB2924F809070030ECA8 /* Root.plist */,
+				AE5D9F16251457A90057519E /* Dynamic.css */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
