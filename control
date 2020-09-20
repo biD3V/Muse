@@ -1,7 +1,7 @@
 Package: com.bid3v.muse
 Name: Muse
 Depends: firmware (>= 13.0), mobilesubstrate, com.dgh0st.hswidgets, com.bid3v.museui
-Version: 0.0.4
+Version: 0.0.5
 Architecture: iphoneos-arm
 Description: Awesome Music HSWidgets!
 Maintainer: biD3V

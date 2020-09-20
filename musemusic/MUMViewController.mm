@@ -9,19 +9,21 @@
     
     [self setCornerRadius:20];
 
+    // Gett Music.app Bundle
     FBApplicationInfo *appInfo = [LSApplicationProxy applicationProxyForIdentifier:@"com.apple.Music"];
     musicBundle = [NSBundle bundleWithURL:appInfo.bundleURL];
     
     self.compactHeight = 30.0;
     
     [self addContentView];
-    [self addPlayerContainer];
-    [self addIconView];
-    [self addLabelView];
+    [self addPlayerContainer]; // Invisible container for top
+    [self addIconView]; // Top right icon
+    [self addLabelView]; // Song title and artist
     //[self addAlbumView];
-    [self addRecentView];
+    [self addRecentView]; // Recently Played section
     [self addAppLabel];
     
+    // Listen for media change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateMedia)
                                                  name:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoDidChangeNotification
@@ -169,14 +171,16 @@
         //[labelView.albumLabel setText:([(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum] && self.widgetFrame.size.numCols > 2)? [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum] : nil];
         [albumArt setImage:[UIImage imageWithData:(currentlyPlaying && [(__bridge NSDictionary *)result objectForKey:(NSData *)(__bridge NSString *)kMRMediaRemoteNowPlayingInfoArtworkData]) ? [(__bridge NSDictionary *)result objectForKey:(NSData *)(__bridge NSString *)kMRMediaRemoteNowPlayingInfoArtworkData] : nil]];
     });
-    [recentVC.collectionView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [recentVC.collectionView reloadData]; // Update Recently Played
+    });
 }
 
 - (void)musicPlaying {
     MRMediaRemoteGetNowPlayingApplicationPID(dispatch_get_main_queue(), ^(int PID) {
         @try {
             SBApplication *app = [[NSClassFromString(@"SBApplicationController") sharedInstance] applicationWithPid:PID];
-            appName = [app displayName] ? [app displayName] : @"Hello";
+            appName = [app displayName] ?: @"Hello";
         } @catch (NSException * e) {
             appName = @"Hello";
         }

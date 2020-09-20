@@ -13,22 +13,25 @@
         self.twoRowHeight = 163.0;
     }
     
+    // Get Spotify Bundle
     FBApplicationInfo *appInfo = [LSApplicationProxy applicationProxyForIdentifier: @"com.spotify.client"];
     spotifyBundle = [NSBundle bundleWithURL:appInfo.bundleURL];
+    // Get widget Bundle
     widgetBundle = [NSBundle bundleWithURL:[NSURL fileURLWithPath:@"/Library/HSWidgets/MuseSpotify.bundle"]];
 
     [self addContentView];
-    [self addPlayerContainer];
-    [self addPause];
-    [self addIconView];
-    [self addAlbumView];
-    [self addLabelView];
-    [self addUpNextView];
-    [self addWaveCenteringView];
+    [self addPlayerContainer]; // Invisible top container
+    [self addPause]; // Pause+Play Button
+    [self addIconView]; // Top right icon view
+    [self addAlbumView]; // Album art
+    [self addLabelView]; // Song title and artist
+    [self addUpNextView]; // Next Up view
+    [self addWaveCenteringView]; // invisible centering view
     [self addAppLabel];
     
     NSFileManager *fileManager = [NSFileManager new];
     
+    // Check if recently played info has been made
     if ([fileManager fileExistsAtPath:@"/var/mobile/Documents/SpotifyRecentlyPlayed.plist"]) {
         if (!recentArray) {
             recentArray = [[NSArray alloc] initWithContentsOfFile:@"/var/mobile/Documents/SpotifyRecentlyPlayed.plist"];
@@ -39,14 +42,17 @@
     NSDictionary *missingnest = [NSDictionary dictionaryWithObjects:@[@"No Songs",@"In Queue"] forKeys:@[@"title",@"artist_name"]];
     NSDictionary *missingno = [NSDictionary dictionaryWithObject:missingnest forKey:@"metadata"];
     
+    // Listen for media change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMedia) name:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoDidChangeNotification object:nil];
+    // Listen for Queue metadata
     [[NSDistributedNotificationCenter defaultCenter] addObserverForName:@"com.bid3v.musespotifyapi/sendnext"
                                                                  object:nil
                                                                   queue:[NSOperationQueue mainQueue]
                                                              usingBlock:^(NSNotification *notification) {
-        [self updateNextUpWithDictionary:notification.userInfo ? notification.userInfo : missingno];
+        [self updateNextUpWithDictionary:notification.userInfo ?: missingno];
 //        [(NSDictionary *)[notification.userInfo objectForKey:@"next_tracks"] writeToFile:@"/var/mobile/Documents/SpotifyQueue.plist" atomically:NO];
     }];
+    // Listen for Recently Played
     [[NSDistributedNotificationCenter defaultCenter] addObserverForName:@"com.bid3v.musespotifyapi/recent"
                                                                  object:nil
                                                                   queue:[NSOperationQueue mainQueue]
@@ -95,7 +101,7 @@
 
 - (void)addPause {
     pause = [UIButton buttonWithType:UIButtonTypeSystem];
-    [pause setImage:[UIImage systemImageNamed:@"playe.circle.fill"] forState:UIControlStateNormal];
+    [pause setImage:[UIImage systemImageNamed:@"play.circle.fill"] forState:UIControlStateNormal];
     pause.tintColor = [UIColor labelColor];
     
     [pause addTarget:self
@@ -368,7 +374,7 @@
     [recentView.bottomAnchor constraintEqualToAnchor:contentView.bottomAnchor].active = true;
     
     if ([widgetOptions[@"ProgressView"] boolValue]) {
-        [recentVC addProgressView];
+        [recentVC addProgressView]; // Non-functional
     }
 }
 
@@ -422,7 +428,7 @@
     MRMediaRemoteGetNowPlayingApplicationPID(dispatch_get_main_queue(), ^(int PID) {
         @try {
             SBApplication *app = [[NSClassFromString(@"SBApplicationController") sharedInstance] applicationWithPid:PID];
-            appName = [app displayName] ? [app displayName] : @"Music";
+            appName = [app displayName] ?: @"Music";
         } @catch (NSException * e) {
             
         }

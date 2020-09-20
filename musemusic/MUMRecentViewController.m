@@ -42,16 +42,6 @@ static NSString * const reuseIdentifier = @"recentMusicCoverCell";
     [self.collectionView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = true;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -76,10 +66,11 @@ static NSString * const reuseIdentifier = @"recentMusicCoverCell";
     MPMediaQuery *songs = [MPMediaQuery songsQuery];
     NSMutableArray *songArray = [NSMutableArray new];
 
+    // Get Album art and required sorting info
     for (MPMediaItem *song in [songs items]) {
         NSMutableDictionary *songDict = [NSMutableDictionary new];
         [songDict setObject:(NSDate *)[song valueForKey:@"dateAdded"] forKey:@"dateAdded"];
-        [songDict setObject:[song valueForKey:@"lastPlayedDate"] ? (NSDate *)[song valueForKey:@"lastPlayedDate"] : (NSDate *)[song valueForKey:@"dateAdded"] forKey:@"lastPlayedDate"];
+        [songDict setObject:(NSDate *)[song valueForKey:@"lastPlayedDate"] ?: (NSDate *)[song valueForKey:@"dateAdded"] forKey:@"lastPlayedDate"];
         [songDict setObject:(NSString *)[song valueForKey:@"title"] forKey:@"title"];
         [songDict setObject:(MPMediaItemArtwork *)[song valueForKey:@"artwork"] ?: [UIImage emptyImageWithSize:CGSizeMake(100, 100)] forKey:@"artwork"];
         [songArray addObject:songDict];
@@ -87,12 +78,14 @@ static NSString * const reuseIdentifier = @"recentMusicCoverCell";
     
     //[songArray writeToFile:@"/var/mobile/Documents/MusicSongs.plist" atomically:NO];
     
+    // Sort
     NSArray *sortedSongs = [songArray sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *song1, NSDictionary *song2) {
         return [(NSDate *)[song2 valueForKey:@"lastPlayedDate"] compare:(NSDate *)[song1 valueForKey:@"lastPlayedDate"]];
     }];
     
     //[sortedSongs writeToFile:@"/var/mobile/Documents/MusicSongsSorted.plist" atomically:NO];
     
+    // Set art
     if (sortedSongs[indexPath.item] != nil) {
         UIImageView *coverArt = [UIImageView new];
         

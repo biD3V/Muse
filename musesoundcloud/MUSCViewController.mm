@@ -11,8 +11,6 @@
     
     FBApplicationInfo *appInfo = [LSApplicationProxy applicationProxyForIdentifier: @"com.soundcloud.TouchApp"];
     soundCloudBundle = [NSBundle bundleWithURL:appInfo.bundleURL];
-    // sc_logo_7_bars.png
-    // logo_sticker.pdf
 
     [self addContentView];
     [self addIconView];
@@ -130,7 +128,7 @@
     MRMediaRemoteGetNowPlayingApplicationPID(dispatch_get_main_queue(), ^(int PID) {
         @try {
             SBApplication *app = [[NSClassFromString(@"SBApplicationController") sharedInstance] applicationWithPid:PID];
-            appName = [app displayName] ? [app displayName] : @"Music";
+            appName = [app displayName] ?: @"Music";
         } @catch (NSException * e) {
             appName = @"Music";
         }

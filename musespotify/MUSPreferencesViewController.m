@@ -2,10 +2,11 @@
 //  MUSPreferencesViewController.m
 //  Muse
 //
-//  Created by Sawyer Jester on 8/27/20.
+//  Created by biD3V on 8/27/20.
 //  Copyright © 2020 biD3V. All rights reserved.
 //
 
+// Does not do anything
 #import "MUSPreferencesViewController.h"
 
 @implementation MUSPreferencesViewController
