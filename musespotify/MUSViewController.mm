@@ -34,6 +34,7 @@
     [self addWaveCenteringView]; // invisible centering view
     [self addAppLabel];
 
+    // If this is not set an exception is thrown later
     lastAlbumDataLength = 1;
     
     NSFileManager *fileManager = [NSFileManager new];
@@ -397,20 +398,24 @@
 
         NSDictionary* info = (__bridge NSDictionary *)result;
 
+        // No need to go forward if info is null
         if(!info) {
             return;
         }
 
+        // Get all info about the track
         NSString* currentTrackId = [info objectForKey:@"kMRMediaRemoteNowPlayingInfoExternalContentIdentifier"];
         NSArray* artistAndTitle = [[info objectForKey:@"kMRMediaRemoteNowPlayingInfoTitle"] componentsSeparatedByString:@" • "];
         NSData* albumData = [info objectForKey:(NSData *)@"kMRMediaRemoteNowPlayingInfoArtworkData"];
         NSString* title;
         NSString* artist;
 
+        // If there's no albumData, we need to wait for a further call
         if(!albumData) {
             return;
         }
         
+        // If the albumData is the same as the lastAlbumData, there's no need to reset the image
         if(lastAlbumDataLength) {
             if ([albumData length] != lastAlbumDataLength) {
                 NSLog(@"[Muse] Album art changed");
@@ -419,6 +424,8 @@
             }
         }
 
+        // When playing Spotify from another device, it sends the artist in the same string as the title separated by the string " • "
+        // If this is the case, split it and set the artist and title accordingly
         if (artistAndTitle && [artistAndTitle count] == 2) {
             title = [artistAndTitle objectAtIndex:0];
             artist = [artistAndTitle objectAtIndex:1];
@@ -428,10 +435,12 @@
             title = [info objectForKey:@"kMRMediaRemoteNowPlayingInfoTitle"];
         }
 
+        // If even with the previous assignment something is not set, return and wait for further calls
         if(!artist || !title) {
             return;
         }
 
+        // If the last track artist or title is different from the current one, update the labels
         if(![lastTrackArtist isEqualToString:artist] || ![lastTrackTitle isEqualToString:title]) {
 
             lastTrackArtist = artist;
