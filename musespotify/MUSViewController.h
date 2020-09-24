@@ -50,7 +50,7 @@
     NSArray *recentArray;
     NSTimer *progressTimer;
     BOOL injected;
-    unsigned int lastAlbumDataLength = 1;
+    unsigned int lastAlbumDataLength;
     UIButton *pause;
 }
 
