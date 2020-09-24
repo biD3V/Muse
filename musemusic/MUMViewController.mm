@@ -123,7 +123,7 @@
                                                          constant:-16];
     labelCondensedCenter = [labelView.centerYAnchor constraintEqualToAnchor:playerContainer.centerYAnchor];
     [labelView setContentCompressionResistancePriority:1000
-                                               forAxis:1];
+                                               forAxis:UILayoutConstraintAxisVertical];
 }
 
 - (void)addAlbumView {

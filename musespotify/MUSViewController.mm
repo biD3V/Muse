@@ -1,4 +1,9 @@
 #import "MUSViewController.h"
+#import <Foundation/Foundation.h>
+
+@interface UIApplication (Undocumented)
+    - (void) launchApplicationWithIdentifier: (NSString*)identifier suspended: (BOOL)suspended;
+@end
 
 @implementation MUSViewController
 
@@ -28,6 +33,8 @@
     [self addUpNextView]; // Next Up view
     [self addWaveCenteringView]; // invisible centering view
     [self addAppLabel];
+
+    lastAlbumDataLength = 1;
     
     NSFileManager *fileManager = [NSFileManager new];
     
@@ -61,6 +68,11 @@
         [recentArray writeToFile:@"/var/mobile/Documents/SpotifyRecentlyPlayed.plist" atomically:NO];
         [self addRecentViewForArray:recentArray];
     }];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[UIApplication sharedApplication] launchApplicationWithIdentifier:@"com.spotify.client" suspended:NO];
 }
 
 - (void)addContentView {
@@ -382,17 +394,62 @@
     [self spotifyPlaying];
     BOOL currentlyPlaying = [appName isEqualToString:@"Spotify"];
     MRMediaRemoteGetNowPlayingInfo(dispatch_get_main_queue(), ^(CFDictionaryRef result) {
-        [labelView.artistLabel setText:(currentlyPlaying && [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoArtist]) ? [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoArtist] : [[UIDevice currentDevice] name]];
-        [labelView.titleLabel setText:(currentlyPlaying && [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoTitle]) ? [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoTitle] : @"Spotify"];
-        //[labelView.albumLabel setText:([(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum] && self.widgetFrame.size.numCols > 2) ? [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum] : nil];
-        albumImageView.image = [UIImage imageWithData:(currentlyPlaying && [(__bridge NSDictionary *)result objectForKey:(NSData *)(__bridge NSString *)kMRMediaRemoteNowPlayingInfoArtworkData]) ? [(__bridge NSDictionary *)result objectForKey:(NSData *)(__bridge NSString *)kMRMediaRemoteNowPlayingInfoArtworkData] : nil];
-        trackUrlString = [(__bridge NSDictionary *)result objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoExternalContentIdentifier];
-        [self addWaveformView];
-        if (currentlyPlaying) {
-            [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.bid3v.musespotifyapi/requestnext"
-                                                                          object:nil
-                                                                        userInfo:nil];
+
+        NSDictionary* info = (__bridge NSDictionary *)result;
+
+        if(!info) {
+            return;
         }
+
+        NSString* currentTrackId = [info objectForKey:@"kMRMediaRemoteNowPlayingInfoExternalContentIdentifier"];
+        NSArray* artistAndTitle = [[info objectForKey:@"kMRMediaRemoteNowPlayingInfoTitle"] componentsSeparatedByString:@" • "];
+        NSData* albumData = [info objectForKey:(NSData *)@"kMRMediaRemoteNowPlayingInfoArtworkData"];
+        NSString* title;
+        NSString* artist;
+
+        if(!albumData) {
+            return;
+        }
+        
+        if(lastAlbumDataLength) {
+            if ([albumData length] != lastAlbumDataLength) {
+                NSLog(@"[Muse] Album art changed");
+                lastAlbumDataLength = [albumData length];
+                albumImageView.image = [UIImage imageWithData:(currentlyPlaying && albumData) ? albumData : nil];
+            }
+        }
+
+        if (artistAndTitle && [artistAndTitle count] == 2) {
+            title = [artistAndTitle objectAtIndex:0];
+            artist = [artistAndTitle objectAtIndex:1];
+        }
+        else {
+            artist = [info objectForKey:@"kMRMediaRemoteNowPlayingInfoArtist"];
+            title = [info objectForKey:@"kMRMediaRemoteNowPlayingInfoTitle"];
+        }
+
+        if(!artist || !title) {
+            return;
+        }
+
+        if(![lastTrackArtist isEqualToString:artist] || ![lastTrackTitle isEqualToString:title]) {
+
+            lastTrackArtist = artist;
+            lastTrackTitle = title;
+
+            [labelView.artistLabel setText:(currentlyPlaying && artist) ? artist : [[UIDevice currentDevice] name]];
+            [labelView.titleLabel setText:(currentlyPlaying && title) ? title : @"Spotify"];
+
+            // [labelView.albumLabel setText:([info objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum] && self.widgetFrame.size.numCols > 2) ? [info objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum] : nil];
+
+            trackUrlString = currentTrackId;
+            // [self addWaveformView];
+
+            if (currentlyPlaying) {
+                [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.bid3v.musespotifyapi/requestnext" object:nil userInfo:nil];
+            }
+        }
+
         //[(__bridge NSDictionary *)result writeToFile:@"/var/mobile/Documents/song.plist" atomically:NO];
     });
     MRMediaRemoteGetNowPlayingApplicationIsPlaying(dispatch_get_main_queue(), ^(Boolean isPlaying) {
