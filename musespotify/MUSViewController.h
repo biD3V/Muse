@@ -41,7 +41,9 @@
     UILabel *appLabel, *testLabel, *nextUpLabel, *nextSong, *nextArtist;
     NSBundle *spotifyBundle, *widgetBundle;
     NSString *trackUrlString, *urlString, *appName, *source, *lastTrackTitle, *lastTrackArtist;
-    NSLayoutConstraint *albumExpanded, *albumShrunk, *labelLeadingExpanded, *labelLeadingShrunk, *pauseLeading, *pauseTrailing, *pauseTop, *pauseBottom, *labelViewExpanded, *labelViewShrunk, *labelViewBottom, *labelViewTop, *centeringViewTop, *centeringViewBottom, *playerContainterBottom, *playerContainerHeight;
+    NSLayoutConstraint *albumExpanded, *albumShrunk, *labelLeadingExpanded, *labelLeadingShrunk, *pauseLeading,
+        *pauseTrailing, *pauseTop, *pauseBottom, *labelViewExpanded, *labelViewShrunk, *labelViewBottom, *labelViewTop,
+        *centeringViewTop, *centeringViewBottom, *playerContainterBottom, *playerContainerHeight;
     WKWebView *svgView;
     WKWebViewConfiguration *config;
     WKUserScript *script;

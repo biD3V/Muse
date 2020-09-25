@@ -266,7 +266,7 @@
     albumView = [UIView new];
     [albumView setBackgroundColor:[UIColor systemFillColor]];
     [albumView setClipsToBounds:true];
-    [albumView.layer setCornerRadius:10];
+    [albumView.layer setCornerRadius:20];
     [albumView.layer setCornerCurve:kCACornerCurveContinuous];
     
     albumImageView = [UIImageView new];
@@ -282,9 +282,10 @@
     [albumImageView.widthAnchor constraintEqualToAnchor:albumImageView.heightAnchor].active = true;
     [albumImageView.centerYAnchor constraintEqualToAnchor:albumView.centerYAnchor].active = true;
     
-    [albumView.leadingAnchor constraintEqualToAnchor:playerContainer.leadingAnchor constant:10].active = true;
-    [albumView.topAnchor constraintEqualToAnchor:playerContainer.topAnchor constant:10].active = true;
-    [albumView.bottomAnchor constraintEqualToAnchor:playerContainer.bottomAnchor constant:-10].active = true;
+    [albumView.leadingAnchor constraintEqualToAnchor:contentView.leadingAnchor constant:0].active = true;
+    [albumView.topAnchor constraintEqualToAnchor:contentView.topAnchor constant:0].active = true;
+    [albumView.bottomAnchor constraintEqualToAnchor:contentView.bottomAnchor constant:0].active = true;
+    
     albumExpanded = [albumView.widthAnchor constraintEqualToAnchor:albumView.heightAnchor];
     albumShrunk = [albumView.widthAnchor constraintEqualToConstant:0];
 }
@@ -303,16 +304,14 @@
     
     [playerContainer addSubview:labelView];
     
-    labelLeadingShrunk = [labelView.leadingAnchor constraintEqualToAnchor:albumView.trailingAnchor constant:6];
+    labelLeadingShrunk = [labelView.leadingAnchor constraintEqualToAnchor:contentView.leadingAnchor constant:6];
     labelLeadingExpanded = [labelView.leadingAnchor constraintEqualToAnchor:albumView.trailingAnchor constant:10];
-    labelViewShrunk = [labelView.trailingAnchor constraintEqualToAnchor:playerContainer.trailingAnchor
-                                             constant:-16];
-    labelViewExpanded = [labelView.trailingAnchor constraintEqualToAnchor:iconView.leadingAnchor
-                                                                 constant:-8];
-    labelViewBottom = [labelView.bottomAnchor constraintEqualToAnchor:playerContainer.bottomAnchor
-                                                             constant:-16];
-    labelViewTop = [labelView.topAnchor constraintEqualToAnchor:playerContainer.topAnchor
-                                                       constant:16];
+    
+    labelViewShrunk = [labelView.trailingAnchor constraintEqualToAnchor:playerContainer.trailingAnchor constant:-16];
+    labelViewExpanded = [labelView.trailingAnchor constraintEqualToAnchor:iconView.leadingAnchor constant:-8];
+    
+    labelViewBottom = [labelView.bottomAnchor constraintEqualToAnchor:playerContainer.bottomAnchor constant:-16];
+    labelViewTop = [labelView.topAnchor constraintEqualToAnchor:playerContainer.topAnchor constant:16];
 }
 
 - (void)addUpNextView {
@@ -359,13 +358,13 @@
 
 - (void)updateNextUpWithDictionary:(NSDictionary *)dictionary {
     if(!dictionary || ![[dictionary objectForKey:@"metadata"] objectForKey:@"title"] || ![[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]) {
-        nextUpView.hidden = true;
+        [nextUpView setAlpha:0];
     }
     else {
         [nextSong setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"title"]];
         [nextArtist setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]];
         
-        nextUpView.hidden = false;
+        [nextUpView setAlpha:1];
     }
 }
 
@@ -471,7 +470,7 @@
             // [labelView.albumLabel setText:([info objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum] && self.widgetFrame.size.numCols > 2) ? [info objectForKey:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoAlbum] : nil];
 
             trackUrlString = currentTrackId;
-            // [self addWaveformView];
+            [self addWaveformView];
 
             if (currentlyPlaying) {
                 [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.bid3v.musespotifyapi/requestnext" object:nil userInfo:nil];
@@ -568,26 +567,32 @@
     if (self.widgetFrame.size.numCols > 2) {
         [svgView setAlpha:0];
         [nextUpView setAlpha:1];
+        
         albumShrunk.active = false;
         labelLeadingShrunk.active = false;
         labelViewBottom.active = false;
         centeringViewTop.active = false;
         centeringViewBottom.active = false;
+        
         albumExpanded.active = true;
         labelLeadingExpanded.active = true;
         labelViewTop.active = true;
+        
         [self pauseExpandContraints];
     } else {
         [svgView setAlpha:1];
         [nextUpView setAlpha:0];
+        
         albumExpanded.active = false;
         labelLeadingExpanded.active = false;
         labelViewTop.active = false;
-        centeringViewTop.active = true;
-        centeringViewBottom.active = true;
+        
         albumShrunk.active = true;
         labelLeadingShrunk.active = true;
         labelViewBottom.active = true;
+        centeringViewTop.active = true;
+        centeringViewBottom.active = true;
+        
         [self pauseShrinkConstraints];
     }
     if (self.widgetFrame.size.numRows > 2) {
