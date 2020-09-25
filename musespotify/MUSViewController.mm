@@ -6,6 +6,18 @@
     - (void) launchApplicationWithIdentifier: (NSString*)identifier suspended: (BOOL)suspended;
 @end
 
+@implementation UIColor (Muse)
+
+- (bool) isLight {
+    CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;
+    [self getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    float luminance = ((0.2126 * red) + (0.7152 * green) + (0.0722 * blue));
+    return luminance >= .6;
+}
+
+@end
+
 @implementation MUSViewController
 
 @synthesize labelView;
@@ -266,7 +278,7 @@
     albumView = [UIView new];
     [albumView setBackgroundColor:[UIColor systemFillColor]];
     [albumView setClipsToBounds:true];
-    [albumView.layer setCornerRadius:20];
+    [albumView.layer setCornerRadius:0];
     [albumView.layer setCornerCurve:kCACornerCurveContinuous];
     
     albumImageView = [UIImageView new];
@@ -296,9 +308,12 @@
 
 - (void)addLabelView {
     labelView = [MUILabelView new];
+    
     [labelView.titleLabel setTextColor:[UIColor labelColor]];
-    [labelView.titleLabel setFont:[UIFont systemFontOfSize:17.0 weight:UIFontWeightBlack]];
+    [labelView.titleLabel setFont:[UIFont systemFontOfSize:16.0 weight:UIFontWeightBlack]];
     [labelView.titleLabel setText:@"Spotify"];
+    labelView.titleLabel.numberOfLines = 2;
+    
     [labelView.artistLabel setText:[[UIDevice currentDevice] name]];
     //[labelView.artistLabel setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold]];
     
@@ -435,7 +450,27 @@
                 albumImageView.image = [UIImage imageWithData:(currentlyPlaying && albumData) ? albumData : nil];
                 
                 // Change background color
-                [contentView setBackgroundColor:[albumImageView.image mergedColor]];
+                UIColor *color = [albumImageView.image mergedColor];
+                [contentView setBackgroundColor:color];
+                
+                // Change text colors based on luminance
+                UIColor *textColor;
+                
+                if ([color isLight]) {
+                    textColor = UIColor.darkTextColor;
+                }
+                else {
+                    textColor = UIColor.lightTextColor;
+                }
+                
+                [labelView.artistLabel setTextColor:textColor];
+                [labelView.titleLabel setTextColor:textColor];
+                
+                [nextSong setTextColor:textColor];
+                [nextArtist setTextColor:textColor];
+                [nextUpLabel setTextColor:[textColor colorWithAlphaComponent:.7]];
+                
+                [pause setTintColor:textColor];
             }
         }
 
