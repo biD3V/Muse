@@ -70,6 +70,9 @@
         [recentArray writeToFile:@"/var/mobile/Documents/SpotifyRecentlyPlayed.plist" atomically:NO];
         [self addRecentViewForArray:recentArray];
     }];
+    
+    // Hide the "Next Up" view
+    [self updateNextUpWithDictionary:nil];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -355,8 +358,15 @@
 }
 
 - (void)updateNextUpWithDictionary:(NSDictionary *)dictionary {
-    [nextSong setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"title"]];
-    [nextArtist setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]];
+    if(!dictionary || ![[dictionary objectForKey:@"metadata"] objectForKey:@"title"] || ![[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]) {
+        nextUpView.hidden = true;
+    }
+    else {
+        [nextSong setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"title"]];
+        [nextArtist setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]];
+        
+        nextUpView.hidden = false;
+    }
 }
 
 - (void)addAppLabel {
@@ -448,6 +458,9 @@
 
         // If the last track artist or title is different from the current one, update the labels
         if(![lastTrackArtist isEqualToString:artist] || ![lastTrackTitle isEqualToString:title]) {
+            
+            // Hide the "Next Up" view when changing tracks as we don't know if there's a queued song yet.
+            [self updateNextUpWithDictionary:nil];
 
             lastTrackArtist = artist;
             lastTrackTitle = title;
