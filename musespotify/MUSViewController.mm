@@ -1,4 +1,5 @@
 #import "MUSViewController.h"
+#import "UIImageAverageColorAddition.h"
 #import <Foundation/Foundation.h>
 
 @interface UIApplication (Undocumented)
@@ -242,7 +243,10 @@
 
 - (void)addIconView {
     iconView = [UIImageView new];
-    UIImage *logo = [UIImage imageNamed:@"Default" inBundle:spotifyBundle compatibleWithTraitCollection:nil];
+    
+    UIImage *logo = [[UIImage imageNamed:@"Default" inBundle:spotifyBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [logo imageWithTintColor:[[UIColor blackColor] colorWithAlphaComponent:.7]];
+    
     iconView.image = [logo resizeImageToWidth:25.0];
     
     [iconView setTranslatesAutoresizingMaskIntoConstraints:false];
@@ -288,8 +292,8 @@
 
 - (void)addLabelView {
     labelView = [MUILabelView new];
-    [labelView.titleLabel setTextColor:[UIColor systemGreenColor]];
-    //[labelView.titleLabel setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightBold]];
+    [labelView.titleLabel setTextColor:[UIColor labelColor]];
+    [labelView.titleLabel setFont:[UIFont systemFontOfSize:17.0 weight:UIFontWeightBlack]];
     [labelView.titleLabel setText:@"Spotify"];
     [labelView.artistLabel setText:[[UIDevice currentDevice] name]];
     //[labelView.artistLabel setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold]];
@@ -311,11 +315,11 @@
 - (void)addUpNextView {
     nextUpLabel = [UILabel new];
     [nextUpLabel setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold]];
-    [nextUpLabel setTextColor:[UIColor systemGreenColor]];
+    [nextUpLabel setTextColor:[UIColor secondaryLabelColor]];
     [nextUpLabel setText:@"Next Up"];
     
     nextSong = [UILabel new];
-    [nextSong setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightMedium]];
+    [nextSong setFont:[UIFont systemFontOfSize:14.0 weight:UIFontWeightBold]];
     
     nextArtist = [UILabel new];
     [nextArtist setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightMedium]];
@@ -418,9 +422,11 @@
         // If the albumData is the same as the lastAlbumData, there's no need to reset the image
         if(lastAlbumDataLength) {
             if ([albumData length] != lastAlbumDataLength) {
-                NSLog(@"[Muse] Album art changed");
                 lastAlbumDataLength = [albumData length];
                 albumImageView.image = [UIImage imageWithData:(currentlyPlaying && albumData) ? albumData : nil];
+                
+                // Change background color
+                [contentView setBackgroundColor:[albumImageView.image mergedColor]];
             }
         }
 
