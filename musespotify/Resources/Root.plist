@@ -2,26 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>items</key>
-	<array>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>UI</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>key</key>
-			<string>ProgressView</string>
-			<key>label</key>
-			<string>Progress View (Not Working)</string>
-			<key>default</key>
-			<false/>
-		</dict>
-	</array>
-	<key>title</key>
-	<string>Muse Spotify</string>
+    <key>items</key>
+    <array>
+        <dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>id</key>
+            <string>UIStyleDescriptor</string>
+            <key>label</key>
+            <string>UI Style</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <real>1</real>
+            <key>key</key>
+            <string>showSpotifyIcon</string>
+            <key>label</key>
+            <string>Show Spotify icon</string>
+        </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <real>1</real>
+            <key>key</key>
+            <string>albumArtMargin</string>
+            <key>label</key>
+            <string>Album art margin</string>
+        </dict>
+    </array>
+    <key>title</key>
+    <string>Muse Spotify</string>
 </dict>
 </plist>

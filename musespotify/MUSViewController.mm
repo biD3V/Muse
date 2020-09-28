@@ -16,6 +16,13 @@
     return luminance >= .6;
 }
 
+- (CGFloat) getAlpha {
+    CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha =0.0;
+    [self getRed:&red green:&green blue:&blue alpha:&alpha];
+
+    return alpha;
+}
+
 @end
 
 @implementation MUSViewController
@@ -23,7 +30,7 @@
 @synthesize labelView;
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+    [super viewDidLoad];
     
     [self setCornerRadius:20];
     
@@ -60,9 +67,6 @@
         [self addRecentViewForArray:recentArray];
     }
     
-    NSDictionary *missingnest = [NSDictionary dictionaryWithObjects:@[@"No Songs",@"In Queue"] forKeys:@[@"title",@"artist_name"]];
-    NSDictionary *missingno = [NSDictionary dictionaryWithObject:missingnest forKey:@"metadata"];
-    
     // Listen for media change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMedia) name:(__bridge NSString *)kMRMediaRemoteNowPlayingInfoDidChangeNotification object:nil];
     // Listen for Queue metadata
@@ -70,7 +74,7 @@
                                                                  object:nil
                                                                   queue:[NSOperationQueue mainQueue]
                                                              usingBlock:^(NSNotification *notification) {
-        [self updateNextUpWithDictionary:notification.userInfo ?: missingno];
+        [self updateNextUpWithDictionary:notification.userInfo];
 //        [(NSDictionary *)[notification.userInfo objectForKey:@"next_tracks"] writeToFile:@"/var/mobile/Documents/SpotifyQueue.plist" atomically:NO];
     }];
     // Listen for Recently Played
@@ -263,22 +267,25 @@
     [logo imageWithTintColor:[[UIColor blackColor] colorWithAlphaComponent:.7]];
     
     iconView.image = [logo resizeImageToWidth:25.0];
-    
     [iconView setTranslatesAutoresizingMaskIntoConstraints:false];
     
     [playerContainer addSubview:iconView];
     
     [iconView.trailingAnchor constraintEqualToAnchor:playerContainer.trailingAnchor constant:-16].active = true;
     [iconView.topAnchor constraintEqualToAnchor:playerContainer.topAnchor constant:16].active = true;
-    [iconView.widthAnchor constraintEqualToConstant:25].active = true;
     [iconView.heightAnchor constraintEqualToConstant:25].active = true;
+    
+    iconViewWidth = [iconView.widthAnchor constraintEqualToConstant:([widgetOptions[@"showSpotifyIcon"] boolValue] ? 25 : 0)];
+    iconViewWidth.active = true;
 }
 
 - (void)addAlbumView {
+    bool hasAlbumArtMargin = [widgetOptions[@"albumArtMargin"] boolValue];
+    
     albumView = [UIView new];
     [albumView setBackgroundColor:[UIColor systemFillColor]];
     [albumView setClipsToBounds:true];
-    [albumView.layer setCornerRadius:0];
+    [albumView.layer setCornerRadius:(hasAlbumArtMargin ? 10 : 20)];
     [albumView.layer setCornerCurve:kCACornerCurveContinuous];
     
     albumImageView = [UIImageView new];
@@ -294,12 +301,19 @@
     [albumImageView.widthAnchor constraintEqualToAnchor:albumImageView.heightAnchor].active = true;
     [albumImageView.centerYAnchor constraintEqualToAnchor:albumView.centerYAnchor].active = true;
     
-    [albumView.leadingAnchor constraintEqualToAnchor:contentView.leadingAnchor constant:0].active = true;
-    [albumView.topAnchor constraintEqualToAnchor:contentView.topAnchor constant:0].active = true;
-    [albumView.bottomAnchor constraintEqualToAnchor:contentView.bottomAnchor constant:0].active = true;
+    [self createAlbumViewConstraint:hasAlbumArtMargin];
     
     albumExpanded = [albumView.widthAnchor constraintEqualToAnchor:albumView.heightAnchor];
     albumShrunk = [albumView.widthAnchor constraintEqualToConstant:0];
+}
+- (void) createAlbumViewConstraint: (bool)hasAlbumArtMargin {
+    albumViewLeading = [albumView.leadingAnchor constraintEqualToAnchor:playerContainer.leadingAnchor constant:(hasAlbumArtMargin ? 10 : 0)];
+    albumViewTop = [albumView.topAnchor constraintEqualToAnchor:playerContainer.topAnchor constant:(hasAlbumArtMargin ? 10 : 0)];
+    albumViewBottom = [albumView.bottomAnchor constraintEqualToAnchor:playerContainer.bottomAnchor constant:(hasAlbumArtMargin ? -10 : 0)];
+    
+    albumViewLeading.active = true;
+    albumViewTop.active = true;
+    albumViewBottom.active = true;
 }
 
 //- (void)updateProgressView {
@@ -310,7 +324,7 @@
     labelView = [MUILabelView new];
     
     [labelView.titleLabel setTextColor:[UIColor labelColor]];
-    [labelView.titleLabel setFont:[UIFont systemFontOfSize:16.0 weight:UIFontWeightBlack]];
+    [labelView.titleLabel setFont:[UIFont systemFontOfSize:15.0 weight:UIFontWeightBlack]];
     [labelView.titleLabel setText:@"Spotify"];
     labelView.titleLabel.numberOfLines = 2;
     
@@ -372,14 +386,17 @@
 }
 
 - (void)updateNextUpWithDictionary:(NSDictionary *)dictionary {
+    
+    NSLog(@"[Muse] %@", dictionary);
+    
+    // If dictionary is null or it doens't have the artist or the title, set default texts.
     if(!dictionary || ![[dictionary objectForKey:@"metadata"] objectForKey:@"title"] || ![[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]) {
-        [nextUpView setAlpha:0];
+        [nextSong setText:@"No Songs"];
+        [nextArtist setText:@"In Queue"];
     }
     else {
         [nextSong setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"title"]];
         [nextArtist setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]];
-        
-        [nextUpView setAlpha:1];
     }
 }
 
@@ -451,6 +468,11 @@
                 
                 // Change background color
                 UIColor *color = [albumImageView.image mergedColor];
+
+                if (!color || [color getAlpha] == 0) {
+                    color = [UIColor tertiarySystemBackgroundColor];
+                }
+
                 [contentView setBackgroundColor:color];
                 
                 // Change text colors based on luminance
@@ -470,6 +492,8 @@
                 [nextArtist setTextColor:textColor];
                 [nextUpLabel setTextColor:[textColor colorWithAlphaComponent:.7]];
                 
+                [[recentVC collectionTitle] setTextColor:textColor];
+                
                 [pause setTintColor:textColor];
             }
         }
@@ -483,11 +507,6 @@
         else {
             artist = [info objectForKey:@"kMRMediaRemoteNowPlayingInfoArtist"];
             title = [info objectForKey:@"kMRMediaRemoteNowPlayingInfoTitle"];
-        }
-
-        // If even with the previous assignment something is not set, return and wait for further calls
-        if(!artist || !title) {
-            return;
         }
 
         // If the last track artist or title is different from the current one, update the labels
@@ -506,7 +525,7 @@
 
             trackUrlString = currentTrackId;
             [self addWaveformView];
-
+            
             if (currentlyPlaying) {
                 [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.bid3v.musespotifyapi/requestnext" object:nil userInfo:nil];
             }
@@ -555,7 +574,7 @@
 }
 
 + (HSWidgetSize)minimumSize {
-	return HSWidgetSizeMake(2, 2); // least amount of rows and cols the widget needs
+    return HSWidgetSizeMake(2, 2); // least amount of rows and cols the widget needs
 }
 
 - (BOOL)isAccessoryTypeEnabled:(AccessoryType)accessoryType {
@@ -648,6 +667,26 @@
 -(void)setWidgetOptionValue:(id<NSCoding>)object forKey:(NSString *)key {
     [super setWidgetOptionValue:object forKey:key];
 
+    if ([key isEqualToString:@"showSpotifyIcon"]) {
+        bool showSpotifyIcon = [widgetOptions[@"showSpotifyIcon"] boolValue];
+        
+        if (showSpotifyIcon) {
+            iconViewWidth.constant = 25;
+        }
+        else {
+            iconViewWidth.constant = 0;
+        }
+    }
+    
+    if ([key isEqualToString:@"albumArtMargin"]) {
+        bool hasAlbumArtMargin = [widgetOptions[@"albumArtMargin"] boolValue];
+        
+        [albumView.layer setCornerRadius:(hasAlbumArtMargin ? 10 : 20)];
+        
+        [NSLayoutConstraint deactivateConstraints:@[albumViewLeading, albumViewTop, albumViewBottom]];
+        [self createAlbumViewConstraint:hasAlbumArtMargin];
+    }
+    
     if ([key isEqualToString:@"ProgressView"]) {
         if ([widgetOptions[key] boolValue]) {
             [recentVC addProgressView];

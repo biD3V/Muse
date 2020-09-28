@@ -43,7 +43,8 @@
     NSString *trackUrlString, *urlString, *appName, *source, *lastTrackTitle, *lastTrackArtist;
     NSLayoutConstraint *albumExpanded, *albumShrunk, *labelLeadingExpanded, *labelLeadingShrunk, *pauseLeading,
         *pauseTrailing, *pauseTop, *pauseBottom, *labelViewExpanded, *labelViewShrunk, *labelViewBottom, *labelViewTop,
-        *centeringViewTop, *centeringViewBottom, *playerContainterBottom, *playerContainerHeight;
+        *centeringViewTop, *centeringViewBottom, *playerContainterBottom, *playerContainerHeight,
+        *albumViewLeading, *albumViewTop, *albumViewBottom, *iconViewWidth;
     WKWebView *svgView;
     WKWebViewConfiguration *config;
     WKUserScript *script;

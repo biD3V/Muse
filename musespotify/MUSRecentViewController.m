@@ -51,7 +51,7 @@ static NSString * const reuseIdentifier = @"recentCoverCell";
     
     [self.collectionView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = true;
     [self.collectionView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = true;
-    [self.collectionView.topAnchor constraintEqualToAnchor:self.labelContainer.bottomAnchor].active = true;
+    [self.collectionView.topAnchor constraintEqualToAnchor:self.labelContainer.bottomAnchor constant:-8].active = true;
     [self.collectionView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = true;
 }
 
@@ -60,7 +60,7 @@ static NSString * const reuseIdentifier = @"recentCoverCell";
     self.collectionTitle = [UILabel new];
     [self.collectionTitle setFont:[UIFont systemFontOfSize:13 weight:UIFontWeightSemibold]];
     [self.collectionTitle setText:self.collectionTitleString];
-    [self.collectionTitle setTextColor:[UIColor systemGreenColor]];
+    [self.collectionTitle setTextColor:[UIColor lightTextColor]];
     
     [self.labelContainer setTranslatesAutoresizingMaskIntoConstraints:false];
     [self.collectionTitle setTranslatesAutoresizingMaskIntoConstraints:false];
@@ -70,7 +70,7 @@ static NSString * const reuseIdentifier = @"recentCoverCell";
     
     [self.labelContainer.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = true;
     [self.labelContainer.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = true;
-    [self.labelContainer.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = true;
+    [self.labelContainer.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:16].active = true;
 //    [self.labelContainer.heightAnchor constraintEqualToConstant:(self.view.frame.size.height - ((self.cellSize * 2.0) + 48.0))].active = true;
     
     [self.collectionTitle.leadingAnchor constraintEqualToAnchor:self.labelContainer.leadingAnchor
