@@ -32,6 +32,16 @@
             <key>label</key>
             <string>Album art margin</string>
         </dict>
+        <dict>
+            <key>cell</key>
+            <string>PSSwitchCell</string>
+            <key>default</key>
+            <real>1</real>
+            <key>key</key>
+            <string>shouldColorBackground</string>
+            <key>label</key>
+            <string>Background based on album</string>
+        </dict>
     </array>
     <key>title</key>
     <string>Muse Spotify</string>

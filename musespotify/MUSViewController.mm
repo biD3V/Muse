@@ -227,8 +227,10 @@
     [svgView.centerYAnchor constraintEqualToAnchor:centeringView.centerYAnchor].active = true;
     [svgView.heightAnchor constraintEqualToConstant:(codeWidth / 4)].active = true;
     
+    bool whiteSvg = ![contentView.backgroundColor isLight];
+    
     // Get Song Code
-    NSString *svgURLString = [NSString stringWithFormat:@"https://scannables.scdn.co/uri/plain/svg/000000/white/640/%@", trackUrlString];
+    NSString *svgURLString = [NSString stringWithFormat:@"https://scannables.scdn.co/uri/plain/svg/000000/%@/640/%@", whiteSvg ? @"white" : @"black", trackUrlString];
     NSURL *url = [NSURL URLWithString:svgURLString];
     NSData *svgData = [NSData dataWithContentsOfURL:url];
     // Download SVG
@@ -263,10 +265,9 @@
 - (void)addIconView {
     iconView = [UIImageView new];
     
-    UIImage *logo = [[UIImage imageNamed:@"Default" inBundle:spotifyBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [logo imageWithTintColor:[[UIColor blackColor] colorWithAlphaComponent:.7]];
-    
+    UIImage *logo = [UIImage imageNamed:@"Default" inBundle:spotifyBundle compatibleWithTraitCollection:nil];
     iconView.image = [logo resizeImageToWidth:25.0];
+    
     [iconView setTranslatesAutoresizingMaskIntoConstraints:false];
     
     [playerContainer addSubview:iconView];
@@ -275,7 +276,8 @@
     [iconView.topAnchor constraintEqualToAnchor:playerContainer.topAnchor constant:16].active = true;
     [iconView.heightAnchor constraintEqualToConstant:25].active = true;
     
-    iconViewWidth = [iconView.widthAnchor constraintEqualToConstant:([widgetOptions[@"showSpotifyIcon"] boolValue] ? 25 : 0)];
+    bool showSpotifyIcon = [widgetOptions[@"showSpotifyIcon"] boolValue];
+    iconViewWidth = [iconView.widthAnchor constraintEqualToConstant:(showSpotifyIcon ? 25 : 0)];
     iconViewWidth.active = true;
 }
 
@@ -307,6 +309,11 @@
     albumShrunk = [albumView.widthAnchor constraintEqualToConstant:0];
 }
 - (void) createAlbumViewConstraint: (bool)hasAlbumArtMargin {
+    
+    if (albumViewLeading && albumViewTop && albumViewBottom) {
+        [NSLayoutConstraint deactivateConstraints:@[albumViewLeading, albumViewTop, albumViewBottom]];
+    }
+    
     albumViewLeading = [albumView.leadingAnchor constraintEqualToAnchor:playerContainer.leadingAnchor constant:(hasAlbumArtMargin ? 10 : 0)];
     albumViewTop = [albumView.topAnchor constraintEqualToAnchor:playerContainer.topAnchor constant:(hasAlbumArtMargin ? 10 : 0)];
     albumViewBottom = [albumView.bottomAnchor constraintEqualToAnchor:playerContainer.bottomAnchor constant:(hasAlbumArtMargin ? -10 : 0)];
@@ -321,10 +328,12 @@
 //}
 
 - (void)addLabelView {
+    bool shouldColorBackground = [widgetOptions[@"shouldColorBackground"] boolValue];
+    
     labelView = [MUILabelView new];
     
-    [labelView.titleLabel setTextColor:[UIColor labelColor]];
-    [labelView.titleLabel setFont:[UIFont systemFontOfSize:15.0 weight:UIFontWeightBlack]];
+    [labelView.titleLabel setTextColor:(shouldColorBackground ? [UIColor labelColor] : [UIColor systemGreenColor])];
+    [labelView.titleLabel setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightBlack]];
     [labelView.titleLabel setText:@"Spotify"];
     labelView.titleLabel.numberOfLines = 2;
     
@@ -344,13 +353,15 @@
 }
 
 - (void)addUpNextView {
+    bool shouldColorBackground = [widgetOptions[@"shouldColorBackground"] boolValue];
+    
     nextUpLabel = [UILabel new];
     [nextUpLabel setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold]];
-    [nextUpLabel setTextColor:[UIColor secondaryLabelColor]];
+    [nextUpLabel setTextColor:(shouldColorBackground ? [UIColor secondaryLabelColor] : [UIColor systemGreenColor])];
     [nextUpLabel setText:@"Next Up"];
     
     nextSong = [UILabel new];
-    [nextSong setFont:[UIFont systemFontOfSize:14.0 weight:UIFontWeightBold]];
+    [nextSong setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightBold]];
     
     nextArtist = [UILabel new];
     [nextArtist setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightMedium]];
@@ -387,22 +398,36 @@
 
 - (void)updateNextUpWithDictionary:(NSDictionary *)dictionary {
     
-    NSLog(@"[Muse] %@", dictionary);
+    NSLog(@"[Muse] nextUp: %@", dictionary);
     
     // If dictionary is null or it doens't have the artist or the title, set default texts.
     if(!dictionary || ![[dictionary objectForKey:@"metadata"] objectForKey:@"title"] || ![[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]) {
-        [nextSong setText:@"No Songs"];
-        [nextArtist setText:@"In Queue"];
+        
+        if(![nextSong.text isEqualToString:@"No Songs"]) {
+            [nextSong setText:@"No Songs"];
+        }
+        
+        if(![nextArtist.text isEqualToString:@"In Queue"]) {
+            [nextArtist setText:@"In Queue"];
+        }
     }
     else {
-        [nextSong setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"title"]];
-        [nextArtist setText:[[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"]];
+        NSString* nextSongText = [[dictionary objectForKey:@"metadata"] objectForKey:@"title"];
+        NSString* nextArtistText = [[dictionary objectForKey:@"metadata"] objectForKey:@"artist_name"];
+        
+        if(![nextSong.text isEqualToString:nextSongText]) {
+            [nextSong setText:nextSongText];
+        }
+        
+        if(![nextArtist.text isEqualToString:nextArtistText]) {
+            [nextArtist setText:nextArtistText];
+        }
     }
 }
 
 - (void)addAppLabel {
     appLabel = [UILabel new];
-    [appLabel setFont:[UIFont systemFontOfSize:12.0 weight:UIFontWeightMedium]];
+    [appLabel setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightMedium]];
     [appLabel setTextColor:[UIColor whiteColor]];
     [appLabel setText:@"Spotify"];
     
@@ -431,8 +456,69 @@
     [recentView.topAnchor constraintEqualToAnchor:playerContainer.bottomAnchor].active = true;
     [recentView.bottomAnchor constraintEqualToAnchor:contentView.bottomAnchor].active = true;
     
+    bool shouldColorBackground = [widgetOptions[@"shouldColorBackground"] boolValue];
+    [recentVC.collectionTitle setTextColor:(shouldColorBackground ? [UIColor systemGreenColor] : [UIColor lightTextColor])];
+    
     if ([widgetOptions[@"ProgressView"] boolValue]) {
         [recentVC addProgressView]; // Non-functional
+    }
+}
+
+- (void)colorBackground:(UIColor *)color {
+    if(color) {
+        if ([color getAlpha] == 0) {
+            color = [UIColor tertiarySystemBackgroundColor];
+        }
+
+        [contentView setBackgroundColor:color];
+        
+        // Change text colors based on luminance
+        UIColor *textColor;
+        
+        if ([color isLight]) {
+            textColor = UIColor.darkTextColor;
+        }
+        else {
+            textColor = UIColor.lightTextColor;
+        }
+        
+        [labelView.artistLabel setTextColor:textColor];
+        [labelView.titleLabel setTextColor:textColor];
+        
+        [nextSong setTextColor:textColor];
+        [nextArtist setTextColor:textColor];
+        [nextUpLabel setTextColor:[textColor colorWithAlphaComponent:.7]];
+        
+        [[recentVC collectionTitle] setTextColor:textColor];
+        
+        [pause setTintColor:textColor];
+        
+        // Change tint color of Spotify's logo.
+        UIImage *logo = [[UIImage imageNamed:@"Default" inBundle:spotifyBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        
+        NSLog(@"[Muse] colorBackground color.isLight: %@", [color isLight] ? @"yes" : @"no");
+        [logo imageWithTintColor:[([color isLight] ? UIColor.blackColor : UIColor.whiteColor) colorWithAlphaComponent:.7]];
+        
+        iconView.image = [logo resizeImageToWidth:25.0];
+    }
+    else {
+        [contentView setBackgroundColor:[UIColor tertiarySystemBackgroundColor]];
+        
+        UIColor *textColor = UIColor.labelColor;
+        
+        [labelView.titleLabel setTextColor:[UIColor systemGreenColor]];
+        [labelView.artistLabel setTextColor:textColor];
+        
+        [nextSong setTextColor:textColor];
+        [nextArtist setTextColor:textColor];
+        [nextUpLabel setTextColor:[UIColor systemGreenColor]];
+        
+        [[recentVC collectionTitle] setTextColor:[UIColor systemGreenColor]];
+        
+        [pause setTintColor:textColor];
+        
+        UIImage *logo = [[UIImage imageNamed:@"Default" inBundle:spotifyBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        iconView.image = [logo resizeImageToWidth:25.0];
     }
 }
 
@@ -466,35 +552,10 @@
                 lastAlbumDataLength = [albumData length];
                 albumImageView.image = [UIImage imageWithData:(currentlyPlaying && albumData) ? albumData : nil];
                 
-                // Change background color
-                UIColor *color = [albumImageView.image mergedColor];
-
-                if (!color || [color getAlpha] == 0) {
-                    color = [UIColor tertiarySystemBackgroundColor];
+                if([widgetOptions[@"shouldColorBackground"] boolValue]) {
+                    UIColor *color = [albumImageView.image mergedColor];
+                    [self colorBackground:color];
                 }
-
-                [contentView setBackgroundColor:color];
-                
-                // Change text colors based on luminance
-                UIColor *textColor;
-                
-                if ([color isLight]) {
-                    textColor = UIColor.darkTextColor;
-                }
-                else {
-                    textColor = UIColor.lightTextColor;
-                }
-                
-                [labelView.artistLabel setTextColor:textColor];
-                [labelView.titleLabel setTextColor:textColor];
-                
-                [nextSong setTextColor:textColor];
-                [nextArtist setTextColor:textColor];
-                [nextUpLabel setTextColor:[textColor colorWithAlphaComponent:.7]];
-                
-                [[recentVC collectionTitle] setTextColor:textColor];
-                
-                [pause setTintColor:textColor];
             }
         }
 
@@ -649,6 +710,7 @@
         
         [self pauseShrinkConstraints];
     }
+    
     if (self.widgetFrame.size.numRows > 2) {
         [recentView setAlpha:1];
         playerContainterBottom.active = false;
@@ -682,9 +744,21 @@
         bool hasAlbumArtMargin = [widgetOptions[@"albumArtMargin"] boolValue];
         
         [albumView.layer setCornerRadius:(hasAlbumArtMargin ? 10 : 20)];
-        
-        [NSLayoutConstraint deactivateConstraints:@[albumViewLeading, albumViewTop, albumViewBottom]];
         [self createAlbumViewConstraint:hasAlbumArtMargin];
+    }
+    
+    if ([key isEqualToString:@"shouldColorBackground"]) {
+        bool shouldColorBackground = [widgetOptions[@"shouldColorBackground"] boolValue];
+        
+        if (shouldColorBackground) {
+            UIColor *color = [albumImageView.image mergedColor];
+            [self colorBackground:color];
+        }
+        else {
+            [self colorBackground:nil];
+        }
+        
+        [self addWaveformView];
     }
     
     if ([key isEqualToString:@"ProgressView"]) {
