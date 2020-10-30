@@ -427,7 +427,7 @@
 
 - (void)addAppLabel {
     appLabel = [UILabel new];
-    [appLabel setFont:[UIFont systemFontOfSize:13.0 weight:UIFontWeightMedium]];
+    [appLabel setFont:[UIFont systemFontOfSize:12.0 weight:UIFontWeightMedium]];
     [appLabel setTextColor:[UIColor whiteColor]];
     [appLabel setText:@"Spotify"];
     
@@ -496,7 +496,6 @@
         // Change tint color of Spotify's logo.
         UIImage *logo = [[UIImage imageNamed:@"Default" inBundle:spotifyBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         
-        NSLog(@"[Muse] colorBackground color.isLight: %@", [color isLight] ? @"yes" : @"no");
         [logo imageWithTintColor:[([color isLight] ? UIColor.blackColor : UIColor.whiteColor) colorWithAlphaComponent:.7]];
         
         iconView.image = [logo resizeImageToWidth:25.0];
