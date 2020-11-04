@@ -40,8 +40,11 @@
     MUILabelView *labelView;
     UILabel *appLabel, *testLabel, *nextUpLabel, *nextSong, *nextArtist;
     NSBundle *spotifyBundle, *widgetBundle;
-    NSString *trackUrlString, *urlString, *appName, *source;
-    NSLayoutConstraint *albumExpanded, *albumShrunk, *labelLeadingExpanded, *labelLeadingShrunk, *pauseLeading, *pauseTrailing, *pauseTop, *pauseBottom, *labelViewExpanded, *labelViewShrunk, *labelViewBottom, *labelViewTop, *centeringViewTop, *centeringViewBottom, *playerContainterBottom, *playerContainerHeight;
+    NSString *trackUrlString, *urlString, *appName, *source, *lastTrackTitle, *lastTrackArtist;
+    NSLayoutConstraint *albumExpanded, *albumShrunk, *labelLeadingExpanded, *labelLeadingShrunk, *pauseLeading,
+        *pauseTrailing, *pauseTop, *pauseBottom, *labelViewExpanded, *labelViewShrunk, *labelViewBottom, *labelViewTop,
+        *centeringViewTop, *centeringViewBottom, *playerContainterBottom, *playerContainerHeight,
+        *albumViewLeading, *albumViewTop, *albumViewBottom, *iconViewWidth;
     WKWebView *svgView;
     WKWebViewConfiguration *config;
     WKUserScript *script;
@@ -50,6 +53,7 @@
     NSArray *recentArray;
     NSTimer *progressTimer;
     BOOL injected;
+    unsigned int lastAlbumDataLength;
     UIButton *pause;
 }
 

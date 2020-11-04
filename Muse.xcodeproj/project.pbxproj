@@ -44,6 +44,8 @@
 		AEC57CA824EC1C23000D82F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC57CA624EC1C23000D82F2 /* LaunchScreen.storyboard */; };
 		AEC57CAB24EC1C23000D82F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC57CAA24EC1C23000D82F2 /* main.m */; };
 		AEFFF5A124ECBB0400DCB0D3 /* MUSViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE3C6F3E24EC20B700B5A841 /* MUSViewController.h */; };
+		D366C86F251D679100434EC7 /* UIImageAverageColorAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = D366C86D251D678E00434EC7 /* UIImageAverageColorAddition.h */; };
+		D366C870251D679100434EC7 /* UIImageAverageColorAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C86E251D679000434EC7 /* UIImageAverageColorAddition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -178,6 +180,8 @@
 		AEC57CA924EC1C23000D82F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEC57CAA24EC1C23000D82F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AEFFF5A424ECCDAE00DCB0D3 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyiOS.framework; path = ../../../theos/lib/SpotifyiOS.framework; sourceTree = "<group>"; };
+		D366C86D251D678E00434EC7 /* UIImageAverageColorAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageAverageColorAddition.h; sourceTree = "<group>"; };
+		D366C86E251D679000434EC7 /* UIImageAverageColorAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageAverageColorAddition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,8 @@
 		AE3C6F0B24EC20B600B5A841 /* musespotify */ = {
 			isa = PBXGroup;
 			children = (
+				D366C86D251D678E00434EC7 /* UIImageAverageColorAddition.h */,
+				D366C86E251D679000434EC7 /* UIImageAverageColorAddition.m */,
 				AE3C6F0C24EC20B600B5A841 /* .theos */,
 				AE3C6F3A24EC20B700B5A841 /* UIImage+Color.h */,
 				AE3C6F3B24EC20B700B5A841 /* Makefile */,
@@ -492,6 +498,7 @@
 			files = (
 				AEC363F424F55CFD00D7D270 /* Tweak.h in Headers */,
 				AE6CA4D524F040EE0048DEB4 /* MUSCViewController.h in Headers */,
+				D366C86F251D679100434EC7 /* UIImageAverageColorAddition.h in Headers */,
 				AEA1F7B924F6A5F8007A8FFA /* MUSRecentViewController.h in Headers */,
 				AE7EEB2724F808A40030ECA8 /* MUSPreferencesViewController.h in Headers */,
 				AE61EFC524F9820100D87832 /* MUMRecentViewController.h in Headers */,
@@ -615,6 +622,7 @@
 				AE7EEB3124F835340030ECA8 /* Makefile in Sources */,
 				AE608BB824F0C422006360D3 /* MUSViewController.mm in Sources */,
 				AEC57C9D24EC1C20000D82F2 /* SceneDelegate.m in Sources */,
+				D366C870251D679100434EC7 /* UIImageAverageColorAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
